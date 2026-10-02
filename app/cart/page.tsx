@@ -74,7 +74,7 @@ export default function CartPage() {
 
                 {/* Details */}
                 <div style={{ flex: 1 }}>
-                  <Link href={`/products/${item.slug}`} className="hover-gold" style={{ fontWeight: 600, color: 'var(--green-dark)' }}>
+                  <Link href={item.href || `/products/${item.slug}`} className="hover-gold" style={{ fontWeight: 600, color: 'var(--green-dark)' }}>
                     {item.productName}
                   </Link>
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>

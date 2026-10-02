@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Product, ProductVariant, Settings } from '@/lib/types'
-import { formatWeight, formatPrice } from '@/lib/types'
+import { formatWeight, formatPrice, CATEGORIES } from '@/lib/types'
 import { useCart } from '@/lib/cart'
 import { useToast } from '@/components/ui/Toast'
 import { generateWhatsAppMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
@@ -24,9 +24,10 @@ export function ProductDetailClient({
   whatsappNumber,
   settings,
 }: ProductDetailClientProps) {
-  const variants = product.variants || []
+  const variants = [...(product.variants || [])].sort((a, b) => a.weight_grams - b.weight_grams)
+  const defaultVariant = variants.find(v => !v.price_not_configured && v.price) || variants[0]
   const [selectedWeight, setSelectedWeight] = useState<number>(
-    variants[0]?.weight_grams || 250
+    defaultVariant?.weight_grams || 250
   )
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState<string>(
@@ -68,6 +69,8 @@ export function ProductDetailClient({
   )
   const directWaUrl = buildWhatsAppUrl(whatsappNumber, waMessage)
 
+  const categoryName = CATEGORIES.find(c => c.slug === product.category)?.name || product.category
+
   const allImages = product.images?.length ? product.images : (product.thumbnail ? [product.thumbnail] : [])
 
   return (
@@ -80,8 +83,8 @@ export function ProductDetailClient({
             {' / '}
             <Link href="/shop" className="hover-gold">Shop</Link>
             {' / '}
-            <Link href={`/${product.category}`} className="hover-gold" style={{ textTransform: 'capitalize' }}>
-              {product.category}
+            <Link href={`/${product.category}`} className="hover-gold">
+              {categoryName}
             </Link>
             {' / '}
             <span style={{ color: 'var(--green-dark)', fontWeight: 600 }}>{product.name}</span>
@@ -115,8 +118,8 @@ export function ProductDetailClient({
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               ) : (
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem' }}>
-                  🌿
+                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem', fontFamily: 'var(--font-serif)', fontWeight: 700, color: 'var(--gold)' }}>
+                  ध
                 </div>
               )}
             </div>
@@ -148,8 +151,8 @@ export function ProductDetailClient({
           {/* Product Specs & Buying info */}
           <div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
-              <span className="badge badge-gold" style={{ textTransform: 'capitalize' }}>
-                {product.category}
+              <span className="badge badge-gold">
+                {categoryName}
               </span>
               {product.origin && (
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>

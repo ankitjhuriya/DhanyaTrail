@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Settings } from '@/lib/types'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { BUSINESS } from '@/lib/business'
 
 interface FooterProps {
   settings: Settings
@@ -9,6 +10,7 @@ interface FooterProps {
 const QUICK_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/shop', label: 'Shop' },
+  { href: '/gifting', label: 'Diwali Gifting' },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
@@ -32,11 +34,11 @@ const CATEGORIES_LINKS = [
 ]
 
 export function Footer({ settings }: FooterProps) {
-  const waPhone = settings.whatsapp_number || '917082977350'
+  const waPhone = settings.whatsapp_number || BUSINESS.whatsappNumber
   const waUrl = buildWhatsAppUrl(waPhone, 'Hello Dhanya Trail! I would like to place an order.')
-  const phone = settings.phone || '+91 70829 77350'
-  const email = settings.email || 'Dhanayatrail@gmail.com'
-  const address = settings.address || 'HTML Colony, Azad Nagar, Hisar, Haryana 125001'
+  const phone = settings.phone || BUSINESS.phone
+  const email = settings.email || BUSINESS.email
+  const address = settings.address || BUSINESS.address
 
   return (
     <footer className="footer" role="contentinfo">
@@ -99,6 +101,10 @@ export function Footer({ settings }: FooterProps) {
               <span className="footer-contact-icon">📍</span>
               <span style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
                 {address}
+                <br />
+                <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="footer-link" style={{ fontWeight: 600 }}>
+                  Get directions →
+                </a>
               </span>
             </div>
 
@@ -116,7 +122,7 @@ export function Footer({ settings }: FooterProps) {
         {/* Bottom */}
         <div className="footer-bottom">
           <div className="footer-copyright">
-            © {new Date().getFullYear()} Dhanya Trail. All rights reserved. | Hisar, Haryana, India
+            © {new Date().getFullYear()} Dhanya Trail. All rights reserved. | Hisar, Haryana, India | FSSAI Lic. No. {BUSINESS.fssai}
           </div>
           <div style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.45)' }}>
             Made with ❤️ in India

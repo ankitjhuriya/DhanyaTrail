@@ -6,16 +6,27 @@ import { CartDrawer } from '@/components/layout/CartDrawer'
 import { StickyWhatsApp } from '@/components/layout/StickyWhatsApp'
 import { getSettings } from '@/lib/products'
 import { ToastProvider } from '@/components/ui/Toast'
+import { BUSINESS, SITE_URL } from '@/lib/business'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Dhanya Trail | Premium Dry Fruits, Nuts, Berries & Healthy Snacks',
   description: 'Shop premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials from Dhanya Trail. Carefully selected products with easy WhatsApp ordering.',
-  keywords: 'dry fruits, nuts, berries, seeds, makhana, saffron, kesar, almonds, cashews, walnuts, wellness, Hisar, Haryana',
+  keywords: 'dry fruits, nuts, berries, seeds, makhana, saffron, kesar, almonds, cashews, walnuts, diwali gift box, dry fruits gift hamper, wellness, Hisar, Haryana',
+  // './' resolves to each page's own URL, so every page gets its own canonical link
+  alternates: { canonical: './' },
   openGraph: {
     type: 'website',
+    url: './',
     title: 'Dhanya Trail | Premium Dry Fruits, Nuts, Berries & Healthy Snacks',
     description: 'Shop premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials from Dhanya Trail.',
     siteName: 'Dhanya Trail',
+    locale: 'en_IN',
+    images: [{ url: '/images/hero.jpg', alt: 'Premium dry fruits and nuts from Dhanya Trail' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/images/hero.jpg'],
   },
   other: {
     'geo.region': 'IN-HR',
@@ -38,28 +49,29 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://dhanyatrail.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'Dhanya Trail',
-              description: 'Premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials',
-              url: 'https://dhanyatrail.com',
-              telephone: '+91-70829-77350',
-              email: 'Dhanayatrail@gmail.com',
+              '@type': 'Store',
+              name: BUSINESS.name,
+              description: 'Premium dry fruits, nuts, berries, seeds, makhana, saffron, wellness essentials and Diwali gift boxes',
+              url: SITE_URL,
+              image: `${SITE_URL}/images/hero.jpg`,
+              telephone: BUSINESS.phone,
+              email: BUSINESS.email,
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'HTML Colony, Azad Nagar',
-                addressLocality: 'Hisar',
-                addressRegion: 'Haryana',
-                postalCode: '125001',
+                streetAddress: BUSINESS.streetAddress,
+                addressLocality: BUSINESS.locality,
+                addressRegion: BUSINESS.region,
+                postalCode: BUSINESS.postalCode,
                 addressCountry: 'IN',
               },
+              hasMap: BUSINESS.mapsUrl,
               areaServed: 'India',
-              sameAs: [],
+              priceRange: '₹₹',
             }),
           }}
         />

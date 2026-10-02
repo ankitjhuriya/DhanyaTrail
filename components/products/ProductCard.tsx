@@ -84,9 +84,12 @@ export function ProductCard({ product, whatsappNumber = '917082977350' }: Produc
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '3rem',
-              color: 'var(--text-light)'
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 700,
+              color: 'var(--gold)',
+              background: 'var(--ivory)',
             }}>
-              🥜
+              ध
             </div>
           )}
         </Link>

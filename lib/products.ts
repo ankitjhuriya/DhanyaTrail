@@ -1,5 +1,6 @@
 import { createPublicClient } from './supabase/public'
 import { Product, Settings } from './types'
+import { BUSINESS } from './business'
 
 export const FALLBACK_PRODUCTS: Product[] = [
   // ALMONDS
@@ -94,8 +95,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v401', product_id: 'prod-4', weight_grams: 250, price: 750, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 15, active: true },
-      { id: 'v402', product_id: 'prod-4', weight_grams: 500, price: 1500, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 10, active: true },
+      { id: 'v401', product_id: 'prod-4', weight_grams: 250, price: 625, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v402', product_id: 'prod-4', weight_grams: 500, price: 1250, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v403', product_id: 'prod-4', weight_grams: 1000, price: 2500, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
   {
@@ -116,8 +118,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v501', product_id: 'prod-5', weight_grams: 250, price: 320, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 25, active: true },
-      { id: 'v502', product_id: 'prod-5', weight_grams: 500, price: 620, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 15, active: true },
+      { id: 'v501', product_id: 'prod-5', weight_grams: 250, price: 430, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v502', product_id: 'prod-5', weight_grams: 500, price: 860, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v503', product_id: 'prod-5', weight_grams: 1000, price: 1720, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
 
@@ -275,8 +278,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v1201', product_id: 'prod-12', weight_grams: 250, price: 490, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
-      { id: 'v1202', product_id: 'prod-12', weight_grams: 500, price: 950, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 10, active: true },
+      { id: 'v1201', product_id: 'prod-12', weight_grams: 250, price: 388, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1202', product_id: 'prod-12', weight_grams: 500, price: 775, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1203', product_id: 'prod-12', weight_grams: 1000, price: 1550, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
   {
@@ -296,8 +300,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v1301', product_id: 'prod-13', weight_grams: 500, price: 650, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 15, active: true },
-      { id: 'v1302', product_id: 'prod-13', weight_grams: 1000, price: 1250, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 8, active: true },
+      { id: 'v1301', product_id: 'prod-13', weight_grams: 250, price: 188, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1302', product_id: 'prod-13', weight_grams: 500, price: 375, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1303', product_id: 'prod-13', weight_grams: 1000, price: 750, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
 
@@ -311,7 +316,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     origin: 'Bihar, India',
     images: ['/images/makhana.jpg'],
     thumbnail: '/images/makhana.jpg',
-    active: true,
+    active: false, // hidden for now — not currently stocked
     featured: false,
     bestseller: false,
     badge: null,
@@ -340,8 +345,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v1501', product_id: 'prod-15', weight_grams: 200, price: 260, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 30, active: true },
-      { id: 'v1502', product_id: 'prod-15', weight_grams: 500, price: 590, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1501', product_id: 'prod-15', weight_grams: 100, price: 180, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1502', product_id: 'prod-15', weight_grams: 200, price: 360, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1503', product_id: 'prod-15', weight_grams: 500, price: 900, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
 
@@ -429,8 +435,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v1901', product_id: 'prod-19', weight_grams: 250, price: 349, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
-      { id: 'v1902', product_id: 'prod-19', weight_grams: 500, price: 679, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 10, active: true },
+      { id: 'v1901', product_id: 'prod-19', weight_grams: 250, price: 420, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1902', product_id: 'prod-19', weight_grams: 500, price: 840, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v1903', product_id: 'prod-19', weight_grams: 1000, price: 1680, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
 
@@ -651,10 +658,10 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // SAFFRON
   {
     id: 'prod-30',
-    name: 'Kesar V1 (Kashmiri Saffron 1g)',
+    name: 'Kashmiri Kesar — Classic',
     slug: 'kesar-v1',
     category: 'saffron',
-    description: 'Premium Grade V1 Saffron (Kesar) — long, deep crimson threads with a delicate aroma. Adds golden colour and distinctive flavour to milk, sweets and biryani.',
+    description: 'Pure Kashmiri saffron with long, deep-crimson threads and a delicate aroma. Adds golden colour and distinctive flavour to milk, sweets and biryani. Sold in 1 g packs.',
     origin: 'Kashmir, India',
     images: ['/images/saffron.jpg'],
     thumbnail: '/images/saffron.jpg',
@@ -666,17 +673,15 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v3001', product_id: 'prod-30', weight_grams: 100, price: 240, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 30, active: true },
-      { id: 'v3002', product_id: 'prod-30', weight_grams: 200, price: 480, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 25, active: true },
-      { id: 'v3003', product_id: 'prod-30', weight_grams: 500, price: 1200, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3001', product_id: 'prod-30', weight_grams: 1, price: 240, price_not_configured: false, auto_calculate: false, inventory_mode: 'packs', inventory_packs: 30, active: true },
     ]
   },
   {
     id: 'prod-31',
-    name: 'Kesar V2 (Super Premium Saffron)',
+    name: 'Kashmiri Kesar — Royal',
     slug: 'kesar-v2',
     category: 'saffron',
-    description: 'Super Premium Grade V2 Saffron — the finest threads, richer in crocin (colour) and safranal (aroma). An exceptional choice for discerning buyers.',
+    description: 'Our finest Kashmiri saffron. Hand-sorted threads, richer in crocin (colour) and safranal (aroma), for the deepest colour and fragrance. Sold in 1 g packs.',
     origin: 'Kashmir, India',
     images: ['/images/saffron.jpg'],
     thumbnail: '/images/saffron.jpg',
@@ -688,9 +693,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v3101', product_id: 'prod-31', weight_grams: 100, price: 320, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 30, active: true },
-      { id: 'v3102', product_id: 'prod-31', weight_grams: 200, price: 640, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 25, active: true },
-      { id: 'v3103', product_id: 'prod-31', weight_grams: 500, price: 1600, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3101', product_id: 'prod-31', weight_grams: 1, price: 320, price_not_configured: false, auto_calculate: false, inventory_mode: 'packs', inventory_packs: 30, active: true },
     ]
   },
 
@@ -712,8 +715,9 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v3201', product_id: 'prod-32', weight_grams: 250, price: 475, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
-      { id: 'v3202', product_id: 'prod-32', weight_grams: 500, price: 950, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 10, active: true },
+      { id: 'v3201', product_id: 'prod-32', weight_grams: 250, price: 430, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3202', product_id: 'prod-32', weight_grams: 500, price: 860, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3203', product_id: 'prod-32', weight_grams: 1000, price: 1720, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   },
 
@@ -735,19 +739,23 @@ export const FALLBACK_PRODUCTS: Product[] = [
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
     variants: [
-      { id: 'v3301', product_id: 'prod-33', weight_grams: 250, price: 299, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 25, active: true },
-      { id: 'v3302', product_id: 'prod-33', weight_grams: 500, price: 549, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 15, active: true },
+      { id: 'v3301', product_id: 'prod-33', weight_grams: 100, price: 140, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3302', product_id: 'prod-33', weight_grams: 250, price: 350, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
+      { id: 'v3303', product_id: 'prod-33', weight_grams: 500, price: 700, price_not_configured: false, auto_calculate: true, inventory_mode: 'packs', inventory_packs: 20, active: true },
     ]
   }
 ]
 
+// Only active products are shown when Supabase is unavailable.
+const ACTIVE_FALLBACK = FALLBACK_PRODUCTS.filter(p => p.active)
+
 export const FALLBACK_SETTINGS: Settings = {
-  whatsapp_number: '917082977350',
+  whatsapp_number: BUSINESS.whatsappNumber,
   whatsapp_default_message: 'Hello Dhanya Trail, I would like to place an order.',
-  email: 'info@dhanyatrail.com',
-  phone: '+91 70829 77350',
-  address: 'HTML Colony, Azad Nagar, Hisar, Haryana 125001',
-  business_name: 'Dhanya Trail',
+  email: BUSINESS.email,
+  phone: BUSINESS.phone,
+  address: BUSINESS.address,
+  business_name: BUSINESS.name,
   tagline: 'NUTS • DRY FRUITS • HEALTHY SNACKS',
 }
 
@@ -781,7 +789,7 @@ export async function getAllProducts(): Promise<Product[]> {
       return data as Product[]
     }
   } catch {}
-  return FALLBACK_PRODUCTS
+  return ACTIVE_FALLBACK
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
@@ -797,7 +805,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     if (!error && data) return data as Product
   } catch {}
 
-  const fallback = FALLBACK_PRODUCTS.find(p => p.slug === slug)
+  const fallback = ACTIVE_FALLBACK.find(p => p.slug === slug)
   return fallback || null
 }
 
@@ -815,7 +823,7 @@ export async function getFeaturedProducts(): Promise<Product[]> {
     if (!error && data && data.length > 0) return data as Product[]
   } catch {}
 
-  return FALLBACK_PRODUCTS.filter(p => p.featured)
+  return ACTIVE_FALLBACK.filter(p => p.featured)
 }
 
 export async function getBestsellerProducts(): Promise<Product[]> {
@@ -832,7 +840,7 @@ export async function getBestsellerProducts(): Promise<Product[]> {
     if (!error && data && data.length > 0) return data as Product[]
   } catch {}
 
-  return FALLBACK_PRODUCTS.filter(p => p.bestseller)
+  return ACTIVE_FALLBACK.filter(p => p.bestseller)
 }
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
@@ -848,7 +856,7 @@ export async function getProductsByCategory(category: string): Promise<Product[]
     if (!error && data && data.length > 0) return data as Product[]
   } catch {}
 
-  return FALLBACK_PRODUCTS.filter(p => p.category === category)
+  return ACTIVE_FALLBACK.filter(p => p.category === category)
 }
 
 export async function getRelatedProducts(productId: string, category: string, limit = 4): Promise<Product[]> {
@@ -865,7 +873,7 @@ export async function getRelatedProducts(productId: string, category: string, li
     if (!error && data && data.length > 0) return data as Product[]
   } catch {}
 
-  return FALLBACK_PRODUCTS.filter(p => p.id !== productId && p.category === category).slice(0, limit)
+  return ACTIVE_FALLBACK.filter(p => p.id !== productId && p.category === category).slice(0, limit)
 }
 
 export async function getAllProductsAdmin(): Promise<Product[]> {

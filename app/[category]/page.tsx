@@ -51,8 +51,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section style={{ background: 'var(--ivory)', borderBottom: '1px solid var(--gold-light)', padding: 'var(--space-3xl) 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-            <span className="section-label">Category Showcase</span>
-            <h1 className="section-title">{cat.emoji} {cat.name}</h1>
+            <span className="section-label">Shop by Category</span>
+            <h1 className="section-title">{cat.name}</h1>
             <div className="gold-divider gold-divider-center" />
             <p className="section-subtitle">
               Explore our selection of premium {cat.name.toLowerCase()}. Sourced for purity and natural richness.

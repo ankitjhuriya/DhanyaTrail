@@ -8,6 +8,7 @@ import { ProductWheelSection } from '@/components/home/ProductWheelSection'
 import { WellnessSection } from '@/components/home/WellnessSection'
 import { WhyDhanya } from '@/components/home/WhyDhanya'
 import { BrandStory } from '@/components/home/BrandStory'
+import { DiwaliGiftingBanner } from '@/components/home/DiwaliGiftingBanner'
 
 export const metadata: Metadata = {
   title: 'Dhanya Trail | Premium Dry Fruits, Nuts, Berries & Healthy Snacks',
@@ -35,6 +36,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection settings={settings} />
+      <DiwaliGiftingBanner />
       {featuredProducts.length > 0 && (
         <FeaturedSection products={featuredProducts} whatsappNumber={whatsappNumber} />
       )}

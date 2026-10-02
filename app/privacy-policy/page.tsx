@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>Contact Regarding Privacy</h2>
         <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
-          If you have questions about your personal data, reach us at info@dhanyatrail.com or call +91 70829 77350.
+          If you have questions about your personal data, reach us at dhanyatrail@gmail.com or call +91 70829 77350.
         </p>
 
         <div style={{ marginTop: '32px' }}>

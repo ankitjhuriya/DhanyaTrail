@@ -42,6 +42,7 @@ export type CartItem = {
   quantity: number
   price: number
   image?: string
+  href?: string // link back to the item; defaults to /products/{slug}
 }
 
 export type Settings = {

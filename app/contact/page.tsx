@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { ContactForm } from '@/components/contact/ContactForm'
+import { BUSINESS } from '@/lib/business'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Dhanya Trail',
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
-  const phone = '917082977350'
+  const phone = BUSINESS.whatsappNumber
   const waUrl = buildWhatsAppUrl(phone, 'Hello Dhanya Trail! I would like to get in touch with you.')
 
   return (
@@ -31,15 +32,21 @@ export default function ContactPage() {
           {/* Information cards */}
           <div style={{ background: 'var(--ivory)', padding: 'var(--space-2xl)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--gold-light)' }}>
             <span className="section-label">Locate Us</span>
-            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', fontSize: '1.75rem', marginBottom: '16px' }}>Hisar Boutique</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', fontSize: '1.75rem', marginBottom: '16px' }}>Visit Our Store in Hisar</h2>
             <p style={{ color: 'var(--text-mid)', lineHeight: 1.8, marginBottom: '24px' }}>
               <strong>Dhanya Trail</strong><br />
-              Nuts • Dry Fruits • Healthy Snacks<br />
-              Hisar, Haryana, India — 125001
+              {BUSINESS.streetAddress},<br />
+              {BUSINESS.locality}, {BUSINESS.region} {BUSINESS.postalCode}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--green-dark)', fontWeight: 600 }}>
+                📍 Get directions on Google Maps →
+              </a>
               <a href={`tel:+${phone}`} style={{ color: 'var(--green-dark)', fontWeight: 600 }}>
-                📞 +91 70829 77350
+                📞 {BUSINESS.phone}
+              </a>
+              <a href={`mailto:${BUSINESS.email}`} style={{ color: 'var(--green-dark)', fontWeight: 600 }}>
+                ✉️ {BUSINESS.email}
               </a>
               <a href={waUrl} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp" style={{ width: 'fit-content' }}>
                 Chat on WhatsApp
