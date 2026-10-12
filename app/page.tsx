@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Settings, Product } from '@/lib/types'
-import { getAllProducts, getSettings, getFeaturedProducts, getBestsellerProducts } from '@/lib/products'
+import { getAllProducts, getSettings, getFeaturedProducts, getBestsellerProducts, getCompetitorPrices } from '@/lib/products'
+import { PriceComparisonSection } from '@/components/home/PriceComparisonSection'
 import { HeroSection } from '@/components/home/HeroSection'
 import { FeaturedSection } from '@/components/home/FeaturedSection'
 import { BestsellerSection } from '@/components/home/BestsellerSection'
@@ -18,11 +19,12 @@ export const metadata: Metadata = {
 export const revalidate = 60
 
 export default async function HomePage() {
-  const [settingsData, allProducts, featuredProducts, bestsellerProducts] = await Promise.all([
+  const [settingsData, allProducts, featuredProducts, bestsellerProducts, competitorPrices] = await Promise.all([
     getSettings().catch(() => ({} as Settings)),
     getAllProducts().catch(() => []),
     getFeaturedProducts().catch(() => []),
     getBestsellerProducts().catch(() => []),
+    getCompetitorPrices().catch(() => []),
   ])
   const settings: Settings = settingsData
 
@@ -40,6 +42,7 @@ export default async function HomePage() {
       {featuredProducts.length > 0 && (
         <FeaturedSection products={featuredProducts} whatsappNumber={whatsappNumber} />
       )}
+      <PriceComparisonSection products={allProducts} competitorPrices={competitorPrices} />
       {allProducts.length > 0 && (
         <ProductWheelSection products={allProducts.slice(0, 12)} settings={settings} />
       )}

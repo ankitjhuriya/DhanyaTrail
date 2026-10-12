@@ -27,6 +27,9 @@ export type ProductVariant = {
   product_id: string
   weight_grams: number
   price: number | null
+  // Crossed-out price. undefined = not provided by the data source (a default markup is used);
+  // null = deliberately none (no strike-out shown).
+  mrp?: number | null
   price_not_configured: boolean
   auto_calculate: boolean
   inventory_mode: 'packs' | 'bulk'

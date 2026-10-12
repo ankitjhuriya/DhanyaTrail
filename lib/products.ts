@@ -1,6 +1,8 @@
 import { createPublicClient } from './supabase/public'
 import { Product, Settings } from './types'
 import { BUSINESS } from './business'
+import { getSheetProducts, getSheetCompetitorPrices } from './sheet'
+import { CompetitorPrice, FALLBACK_COMPETITOR_PRICES } from './competitors'
 
 export const FALLBACK_PRODUCTS: Product[] = [
   // ALMONDS
@@ -776,7 +778,12 @@ export async function getSettings(): Promise<Settings> {
 // ============================================================
 // PRODUCTS
 // ============================================================
-export async function getAllProducts(): Promise<Product[]> {
+// Catalogue source, in priority order:
+//   1. The catalogue Google Sheet (lib/sheet.ts), when it is shared and has products
+//   2. Supabase
+//   3. The built-in FALLBACK_PRODUCTS list
+// Every getter filters the same loaded list, so the site always shows one consistent catalogue.
+async function loadSupabaseProducts(): Promise<Product[] | null> {
   try {
     const supabase = createPublicClient()
     const { data, error } = await supabase
@@ -784,96 +791,51 @@ export async function getAllProducts(): Promise<Product[]> {
       .select(`*, variants:product_variants(*)`)
       .eq('active', true)
       .order('created_at', { ascending: true })
-
-    if (!error && data && data.length > 0) {
-      return data as Product[]
-    }
+    if (!error && data && data.length > 0) return data as Product[]
   } catch {}
-  return ACTIVE_FALLBACK
+  return null
+}
+
+async function loadActiveCatalogue(): Promise<Product[]> {
+  const fromSheet = await getSheetProducts()
+  if (fromSheet) return fromSheet.filter(p => p.active)
+  return (await loadSupabaseProducts()) ?? ACTIVE_FALLBACK
+}
+
+export async function getAllProducts(): Promise<Product[]> {
+  return loadActiveCatalogue()
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  try {
-    const supabase = createPublicClient()
-    const { data, error } = await supabase
-      .from('products')
-      .select(`*, variants:product_variants(*)`)
-      .eq('slug', slug)
-      .eq('active', true)
-      .single()
-
-    if (!error && data) return data as Product
-  } catch {}
-
-  const fallback = ACTIVE_FALLBACK.find(p => p.slug === slug)
-  return fallback || null
+  const products = await loadActiveCatalogue()
+  return products.find(p => p.slug === slug) || null
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  try {
-    const supabase = createPublicClient()
-    const { data, error } = await supabase
-      .from('products')
-      .select(`*, variants:product_variants(*)`)
-      .eq('active', true)
-      .eq('featured', true)
-      .order('created_at', { ascending: true })
-      .limit(8)
-
-    if (!error && data && data.length > 0) return data as Product[]
-  } catch {}
-
-  return ACTIVE_FALLBACK.filter(p => p.featured)
+  const products = await loadActiveCatalogue()
+  return products.filter(p => p.featured).slice(0, 8)
 }
 
 export async function getBestsellerProducts(): Promise<Product[]> {
-  try {
-    const supabase = createPublicClient()
-    const { data, error } = await supabase
-      .from('products')
-      .select(`*, variants:product_variants(*)`)
-      .eq('active', true)
-      .eq('bestseller', true)
-      .order('created_at', { ascending: true })
-      .limit(8)
-
-    if (!error && data && data.length > 0) return data as Product[]
-  } catch {}
-
-  return ACTIVE_FALLBACK.filter(p => p.bestseller)
+  const products = await loadActiveCatalogue()
+  return products.filter(p => p.bestseller).slice(0, 8)
 }
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
-  try {
-    const supabase = createPublicClient()
-    const { data, error } = await supabase
-      .from('products')
-      .select(`*, variants:product_variants(*)`)
-      .eq('active', true)
-      .eq('category', category)
-      .order('created_at', { ascending: true })
-
-    if (!error && data && data.length > 0) return data as Product[]
-  } catch {}
-
-  return ACTIVE_FALLBACK.filter(p => p.category === category)
+  const products = await loadActiveCatalogue()
+  return products.filter(p => p.category === category)
 }
 
 export async function getRelatedProducts(productId: string, category: string, limit = 4): Promise<Product[]> {
-  try {
-    const supabase = createPublicClient()
-    const { data, error } = await supabase
-      .from('products')
-      .select(`*, variants:product_variants(*)`)
-      .eq('active', true)
-      .eq('category', category)
-      .neq('id', productId)
-      .limit(limit)
+  const products = await loadActiveCatalogue()
+  return products.filter(p => p.id !== productId && p.category === category).slice(0, limit)
+}
 
-    if (!error && data && data.length > 0) return data as Product[]
-  } catch {}
-
-  return ACTIVE_FALLBACK.filter(p => p.id !== productId && p.category === category).slice(0, limit)
+// ============================================================
+// COMPETITOR PRICES
+// ============================================================
+export async function getCompetitorPrices(): Promise<CompetitorPrice[]> {
+  return (await getSheetCompetitorPrices()) ?? FALLBACK_COMPETITOR_PRICES
 }
 
 export async function getAllProductsAdmin(): Promise<Product[]> {

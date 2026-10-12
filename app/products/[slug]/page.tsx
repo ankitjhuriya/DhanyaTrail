@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getProductBySlug, getAllProducts, getSettings } from '@/lib/products'
+import { getProductBySlug, getAllProducts, getSettings, getCompetitorPrices } from '@/lib/products'
+import { buildPriceComparison } from '@/lib/competitors'
 import { Product, Settings } from '@/lib/types'
 import { SITE_URL } from '@/lib/business'
 import { ProductDetailClient } from './ProductDetailClient'
@@ -69,10 +70,11 @@ export const revalidate = 60
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params
-  const [product, allProducts, settingsData] = await Promise.all([
+  const [product, allProducts, settingsData, competitorPrices] = await Promise.all([
     getProductBySlug(slug),
     getAllProducts().catch(() => []),
     getSettings().catch(() => ({} as Settings)),
+    getCompetitorPrices().catch(() => []),
   ])
   const settings: Settings = settingsData
 
@@ -97,6 +99,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         relatedProducts={relatedProducts}
         whatsappNumber={whatsappNumber}
         settings={settings}
+        comparison={buildPriceComparison(product, competitorPrices)}
       />
     </>
   )

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Product } from '@/lib/types'
 import { formatWeight, formatPrice } from '@/lib/types'
-import { getDisplayVariant, compareAtPrice, pricePer100g } from '@/lib/pricing'
+import { getDisplayVariant, getCompareAtPrice, pricePer100g } from '@/lib/pricing'
 import { useCart } from '@/lib/cart'
 import { useToast } from '@/components/ui/Toast'
 
@@ -24,6 +24,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const price = variant?.price ?? null
   const isOutOfStock = !!variant && variant.inventory_packs === 0
   const per100g = variant ? pricePer100g(variant) : null
+  const compareAt = variant ? getCompareAtPrice(variant) : null
   const image = product.thumbnail || product.images?.[0]
   const href = `/products/${product.slug}`
 
@@ -87,9 +88,11 @@ export function ProductCard({ product }: ProductCardProps) {
                 <span className="product-card-price" itemProp="price" content={price.toString()}>
                   {formatPrice(price)}
                 </span>
-                <s className="product-card-mrp" aria-label={`Was ${formatPrice(compareAtPrice(price))}`}>
-                  {formatPrice(compareAtPrice(price))}
-                </s>
+                {compareAt !== null && (
+                  <s className="product-card-mrp" aria-label={`Was ${formatPrice(compareAt)}`}>
+                    {formatPrice(compareAt)}
+                  </s>
+                )}
                 <span className="product-card-weight">/ {formatWeight(variant.weight_grams)}</span>
               </div>
               {per100g !== null && (

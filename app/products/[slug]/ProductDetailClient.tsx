@@ -4,7 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Product, ProductVariant, Settings } from '@/lib/types'
 import { formatWeight, formatPrice, CATEGORIES } from '@/lib/types'
-import { compareAtPrice, pricePer100g } from '@/lib/pricing'
+import { getCompareAtPrice, pricePer100g } from '@/lib/pricing'
+import { PriceComparison } from '@/lib/competitors'
+import { PriceComparisonBox } from '@/components/products/PriceComparisonBox'
 import { useCart } from '@/lib/cart'
 import { useToast } from '@/components/ui/Toast'
 import { generateWhatsAppMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
@@ -17,6 +19,7 @@ interface ProductDetailClientProps {
   relatedProducts: Product[]
   whatsappNumber: string
   settings: Settings
+  comparison: PriceComparison | null
 }
 
 export function ProductDetailClient({
@@ -24,6 +27,7 @@ export function ProductDetailClient({
   relatedProducts,
   whatsappNumber,
   settings,
+  comparison,
 }: ProductDetailClientProps) {
   const variants = [...(product.variants || [])].sort((a, b) => a.weight_grams - b.weight_grams)
   const defaultVariant = variants.find(v => !v.price_not_configured && v.price) || variants[0]
@@ -40,6 +44,7 @@ export function ProductDetailClient({
 
   const currentVariant = variants.find(v => v.weight_grams === selectedWeight) || variants[0]
   const price = currentVariant?.price ?? 0
+  const compareAt = currentVariant ? getCompareAtPrice(currentVariant) : null
 
   const handleAddToCart = () => {
     if (!currentVariant || currentVariant.price_not_configured || price === 0) return
@@ -194,9 +199,11 @@ export function ProductDetailClient({
                   <span style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--green-dark)', fontFamily: 'var(--font-serif)' }}>
                     {formatPrice(price * quantity)}
                   </span>
-                  <s style={{ fontSize: '1.25rem', color: 'var(--text-light)' }} aria-label={`Was ${formatPrice(compareAtPrice(price) * quantity)}`}>
-                    {formatPrice(compareAtPrice(price) * quantity)}
-                  </s>
+                  {compareAt !== null && (
+                    <s style={{ fontSize: '1.25rem', color: 'var(--text-light)' }} aria-label={`Was ${formatPrice(compareAt * quantity)}`}>
+                      {formatPrice(compareAt * quantity)}
+                    </s>
+                  )}
                   {currentVariant && pricePer100g(currentVariant) !== null && (
                     <span style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>
                       ({formatPrice(pricePer100g(currentVariant)!)} per 100 g)
@@ -226,6 +233,8 @@ export function ProductDetailClient({
                 Order via WhatsApp
               </a>
             </div>
+
+            {comparison && <PriceComparisonBox comparison={comparison} />}
 
             {/* Product attributes / features list */}
             <div style={{ background: 'var(--ivory)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--gold-light)' }}>
