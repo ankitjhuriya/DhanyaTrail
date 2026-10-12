@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useCart } from '@/lib/cart'
 import { Settings } from '@/lib/types'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { BUSINESS } from '@/lib/business'
 
 interface NavbarProps {
   settings: Settings
@@ -49,7 +50,9 @@ export function Navbar({ settings }: NavbarProps) {
       <div className="announcement-bar">
         <span>🪔 <Link href="/gifting">Diwali Gift Boxes now available</Link></span>
         <span className="announcement-sep announcement-secondary">•</span>
-        <span className="announcement-secondary">Visit our store in Hisar</span>
+        <span className="announcement-secondary">
+          <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer">Visit our store in Hisar</a>
+        </span>
         <span className="announcement-sep announcement-secondary">•</span>
         <span className="announcement-secondary">Quick WhatsApp Ordering</span>
       </div>
@@ -106,6 +109,21 @@ export function Navbar({ settings }: NavbarProps) {
 
             {/* Actions */}
             <div className="nav-actions">
+              {/* Store location */}
+              <a
+                href={BUSINESS.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-store-link"
+                aria-label="Our store in Hisar on Google Maps"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span className="nav-store-text">Hisar Store</span>
+              </a>
+
               {/* Search */}
               <Link href="/shop" className="nav-icon-btn nav-search-btn" aria-label="Search products">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -119,7 +137,7 @@ export function Navbar({ settings }: NavbarProps) {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-icon-btn"
+                className="nav-icon-btn nav-whatsapp-btn"
                 aria-label="Order on WhatsApp"
                 style={{ color: '#25D366' }}
               >
@@ -210,6 +228,9 @@ export function Navbar({ settings }: NavbarProps) {
             <button onClick={() => { openCart(); setMobileOpen(false) }} className="btn btn-outline" style={{ justifyContent: 'center' }}>
               View Cart
             </button>
+            <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ justifyContent: 'center' }}>
+              📍 Visit our Hisar store
+            </a>
           </div>
         </div>
       </div>

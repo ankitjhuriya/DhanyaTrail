@@ -2748,3 +2748,49 @@ p { line-height: 1.7; }
 .price-compare-grid .price-compare-ours { background: rgba(42, 74, 26, 0.06); color: var(--green); font-weight: 700; }
 .price-compare-grid thead .price-compare-ours { color: var(--green); }
 .price-compare-save-cell { color: var(--green-mid); font-weight: 600; }
+
+/* Gift quantity offers: 1 / 2 / 5 */
+.gift-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.gift-tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.55rem 0.25rem;
+  border: 1.5px solid var(--beige);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.gift-tier:hover { border-color: var(--green); }
+.gift-tier.active { border-color: var(--green); background: rgba(42, 74, 26, 0.06); box-shadow: inset 0 0 0 1px var(--green); }
+.gift-tier-qty { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.gift-tier-price { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
+.gift-tier.active .gift-tier-price { color: var(--green); }
+.gift-tier-off { font-size: 0.7rem; font-weight: 700; color: var(--white); background: var(--gold); border-radius: var(--radius-full); padding: 0.05rem 0.45rem; }
+
+/* Header store location link */
+.nav-store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 40px;
+  padding: 0 0.75rem;
+  border: 1.5px solid var(--gold-light);
+  border-radius: var(--radius-full);
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.nav-store-link:hover { background: var(--ivory); border-color: var(--green); }
+@media (max-width: 900px) {
+  .nav-store-text { display: none; }
+  .nav-store-link { width: 40px; padding: 0; justify-content: center; border-color: transparent; }
+}
+@media (max-width: 600px) {
+  .nav-whatsapp-btn { display: none !important; }
+}

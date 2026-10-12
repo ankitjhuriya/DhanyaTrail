@@ -15,17 +15,29 @@ export type GiftProduct = {
   name: string
   tagline: string
   format: string       // e.g. "3 × 350 ml jars"
+  unit: [string, string] // singular and plural, e.g. ['box', 'boxes']
   optionLabel?: string // heading for the selector, e.g. "Design" or "Size"
   options: GiftOption[]
 }
 
+// Quantity offers on every gift: buy 2 for 10% off, 5 for 20% off.
+export const GIFT_QTY_TIERS = [
+  { qty: 1, discount: 0 },
+  { qty: 2, discount: 0.1 },
+  { qty: 5, discount: 0.2 },
+] as const
+
+export function giftTierPrice(unitPrice: number, qty: number, discount: number): number {
+  return Math.round(unitPrice * qty * (1 - discount))
+}
+
 const BASE_3_JAR = [
   { item: 'California Almonds', grams: 150 },
-  { item: 'Cashew (W320)', grams: 150 },
+  { item: 'Roasted Cashew', grams: 150 },
   { item: 'Green Kishmish', grams: 200 },
 ]
 
-const BASE_4_JAR = [...BASE_3_JAR, { item: 'Roasted Pistachio', grams: 150 }]
+const BASE_4_JAR = [...BASE_3_JAR, { item: 'Seed Mix', grams: 150 }]
 
 export const GIFT_PRODUCTS: GiftProduct[] = [
   {
@@ -33,6 +45,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     name: '3 Jar Gift Box',
     tagline: 'Indian Heritage design with a satin-lined interior and gold-tone handle.',
     format: '3 × 350 ml jars',
+    unit: ['box', 'boxes'],
     optionLabel: 'Design',
     options: [
       { id: 'midnight-blue', label: 'Midnight Blue', image: '/images/gifting/3-jar-box-midnight-blue.jpg', price: 980, netWeightGrams: 500, contents: BASE_3_JAR },
@@ -44,8 +57,9 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     name: '4 Jar Gift Box',
     tagline: 'Twin-peacock artwork in teal and blush, satin-lined with a gold-tone handle.',
     format: '4 × 350 ml jars',
+    unit: ['box', 'boxes'],
     options: [
-      { id: 'peacock', label: 'Peacock', image: '/images/gifting/4-jar-box-peacock.jpg', price: 1380, netWeightGrams: 650, contents: BASE_4_JAR },
+      { id: 'peacock', label: 'Peacock', image: '/images/gifting/4-jar-box-peacock.jpg', price: 1180, netWeightGrams: 650, contents: BASE_4_JAR },
     ],
   },
   {
@@ -53,8 +67,9 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     name: '4 Jar Carry Bag Box',
     tagline: 'Pichwai-inspired cow and lotus artwork on soft sage, with a matching carry bag.',
     format: '4 × 350 ml jars + carry bag',
+    unit: ['box', 'boxes'],
     options: [
-      { id: 'pichwai', label: 'Pichwai', image: '/images/gifting/4-jar-carry-bag-box.jpg', price: 1480, netWeightGrams: 650, contents: BASE_4_JAR },
+      { id: 'pichwai', label: 'Pichwai', image: '/images/gifting/4-jar-carry-bag-box.jpg', price: 1280, netWeightGrams: 650, contents: BASE_4_JAR },
     ],
   },
   {
@@ -62,6 +77,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     name: 'Dry Fruits Thaali',
     tagline: 'A jewelled, hand-decorated thaali, ribbon-wrapped and ready to gift.',
     format: 'Decorated thaali',
+    unit: ['thaali', 'thaalis'],
     optionLabel: 'Size',
     options: [
       {
@@ -89,6 +105,7 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
     name: 'Dry Fruits Gift Tray',
     tagline: 'A floral-bordered keepsake tray with premium dry fruits, walnuts and date chocolates.',
     format: 'Keepsake tray',
+    unit: ['tray', 'trays'],
     options: [
       {
         id: 'floral', label: 'Floral', image: '/images/gifting/dry-fruits-gift-tray.jpg', price: 1600, netWeightGrams: 900,
@@ -105,5 +122,4 @@ export const GIFT_PRODUCTS: GiftProduct[] = [
   },
 ]
 
-export const GIFTING_DISCOUNT_THRESHOLD = 3000
 export const GIFTING_FROM_PRICE = Math.min(...GIFT_PRODUCTS.flatMap(g => g.options.map(o => o.price)))

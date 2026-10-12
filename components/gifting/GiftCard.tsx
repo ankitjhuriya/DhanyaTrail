@@ -1,50 +1,47 @@
 'use client'
 
 import { useState } from 'react'
-import { GiftProduct } from '@/lib/gifting'
+import { GiftProduct, GIFT_QTY_TIERS, giftTierPrice } from '@/lib/gifting'
 import { formatPrice, formatWeight } from '@/lib/types'
 import { useCart } from '@/lib/cart'
 import { useToast } from '@/components/ui/Toast'
-import { QuantitySelector } from '@/components/products/QuantitySelector'
-import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 interface GiftCardProps {
   gift: GiftProduct
-  whatsappNumber: string
 }
 
-export function GiftCard({ gift, whatsappNumber }: GiftCardProps) {
+export function GiftCard({ gift }: GiftCardProps) {
   const [optionId, setOptionId] = useState(gift.options[0].id)
-  const [qty, setQty] = useState(1)
+  const [tierQty, setTierQty] = useState<number>(GIFT_QTY_TIERS[0].qty)
   const { addItem } = useCart()
   const { addToast } = useToast()
 
   const option = gift.options.find(o => o.id === optionId) || gift.options[0]
+  const tier = GIFT_QTY_TIERS.find(t => t.qty === tierQty) || GIFT_QTY_TIERS[0]
   const hasChoice = gift.options.length > 1
   const displayName = hasChoice ? `${gift.name} (${option.label})` : gift.name
+  const [unitOne, unitMany] = gift.unit
+  const unitLabel = (n: number) => `${n} ${n === 1 ? unitOne : unitMany}`
+
+  const total = giftTierPrice(option.price, tier.qty, tier.discount)
+  const fullPrice = option.price * tier.qty
 
   const handleAddToCart = () => {
+    // A multi-pack is one cart line priced as a bundle, so changing its quantity
+    // in the cart adds whole bundles at the same discounted price.
+    const bundleName = tier.qty === 1 ? displayName : `${displayName}, pack of ${tier.qty}`
     addItem({
-      productId: `${gift.id}-${option.id}`,
-      productName: displayName,
+      productId: `${gift.id}-${option.id}-x${tier.qty}`,
+      productName: bundleName,
       slug: gift.id,
       href: `/gifting#${gift.id}`,
-      weight: option.netWeightGrams,
-      quantity: qty,
-      price: option.price,
+      weight: option.netWeightGrams * tier.qty,
+      quantity: 1,
+      price: total,
       image: option.image,
     })
-    addToast(`${displayName} added to cart`, 'success')
+    addToast(`${bundleName} added to cart`, 'success')
   }
-
-  const waMessage = [
-    'Hello Dhanya Trail, I would like to order a Diwali gift:',
-    '',
-    `${displayName} × ${qty}`,
-    `Total: ${formatPrice(option.price * qty)}`,
-    '',
-    'Please share delivery details.',
-  ].join('\n')
 
   return (
     <article id={gift.id} className="product-card gift-card">
@@ -90,28 +87,44 @@ export function GiftCard({ gift, whatsappNumber }: GiftCardProps) {
           <div className="gift-card-net">Net weight {formatWeight(option.netWeightGrams)}</div>
         </div>
 
+        <div>
+          <div className="product-weight-label">How many?</div>
+          <div className="gift-tiers" role="radiogroup" aria-label="Quantity">
+            {GIFT_QTY_TIERS.map(t => {
+              const selected = t.qty === tier.qty
+              return (
+                <button
+                  key={t.qty}
+                  role="radio"
+                  aria-checked={selected}
+                  className={`gift-tier ${selected ? 'active' : ''}`}
+                  onClick={() => setTierQty(t.qty)}
+                >
+                  <span className="gift-tier-qty">{unitLabel(t.qty)}</span>
+                  <span className="gift-tier-price">{formatPrice(giftTierPrice(option.price, t.qty, t.discount))}</span>
+                  {t.discount > 0 && <span className="gift-tier-off">{Math.round(t.discount * 100)}% off</span>}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
         <div className="product-card-price gift-card-price">
-          {formatPrice(option.price)}
-          <span className="product-card-price-sub"> / piece</span>
+          {formatPrice(total)}
+          {tier.discount > 0 && (
+            <>
+              {' '}<s className="product-card-mrp">{formatPrice(fullPrice)}</s>
+              <span className="product-card-price-sub"> for {unitLabel(tier.qty)} · {formatPrice(total / tier.qty)} each</span>
+            </>
+          )}
+          {tier.discount === 0 && <span className="product-card-price-sub"> / {unitOne}</span>}
         </div>
       </div>
 
       <div className="product-card-actions">
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
-          <QuantitySelector value={qty} onChange={setQty} max={50} />
-          <button className="btn btn-primary btn-sm" onClick={handleAddToCart} aria-label={`Add ${displayName} to cart`}>
-            Add to Cart
-          </button>
-        </div>
-        <a
-          href={buildWhatsAppUrl(whatsappNumber, waMessage)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-whatsapp btn-sm"
-          style={{ textAlign: 'center', textDecoration: 'none' }}
-        >
-          Order on WhatsApp
-        </a>
+        <button className="btn btn-primary" onClick={handleAddToCart} aria-label={`Add ${unitLabel(tier.qty)} of ${displayName} to cart`}>
+          Add to Cart
+        </button>
       </div>
     </article>
   )

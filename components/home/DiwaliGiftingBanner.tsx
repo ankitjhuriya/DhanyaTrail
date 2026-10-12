@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { GIFTING_DISCOUNT_THRESHOLD, GIFTING_FROM_PRICE } from '@/lib/gifting'
+import { GIFTING_FROM_PRICE } from '@/lib/gifting'
 import { formatPrice } from '@/lib/types'
 
 export function DiwaliGiftingBanner() {
@@ -12,7 +12,7 @@ export function DiwaliGiftingBanner() {
             <h2>Gift boxes that feel like a keepsake</h2>
             <p>
               Premium dry fruits in Indian Heritage and Pichwai-art boxes, thaalis and trays, from {formatPrice(GIFTING_FROM_PRICE)}.
-              Special discount on orders above {formatPrice(GIFTING_DISCOUNT_THRESHOLD)}.
+              Save 10% when you buy 2 and 20% when you buy 5.
             </p>
             <div className="diwali-banner-actions">
               <Link href="/gifting" className="btn btn-gold">Shop Diwali Gifts</Link>

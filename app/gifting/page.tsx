@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { GIFT_PRODUCTS, GIFTING_DISCOUNT_THRESHOLD, GIFTING_FROM_PRICE } from '@/lib/gifting'
+import { GIFT_PRODUCTS, GIFTING_FROM_PRICE } from '@/lib/gifting'
 import { GiftCard } from '@/components/gifting/GiftCard'
 import { getSettings } from '@/lib/products'
 import { BUSINESS, SITE_URL } from '@/lib/business'
@@ -83,7 +83,7 @@ export default async function GiftingPage() {
             <div className="gifting-offer-strip">
               <span>From <strong>{formatPrice(GIFTING_FROM_PRICE)}</strong></span>
               <span aria-hidden="true">•</span>
-              <span>Special discount on orders above <strong>{formatPrice(GIFTING_DISCOUNT_THRESHOLD)}</strong></span>
+              <span><strong>10% off</strong> on 2 · <strong>20% off</strong> on 5</span>
               <span aria-hidden="true">•</span>
               <span>Delivery across North India</span>
             </div>
@@ -96,7 +96,7 @@ export default async function GiftingPage() {
         <div className="container">
           <div className="gift-grid">
             {GIFT_PRODUCTS.map(gift => (
-              <GiftCard key={gift.id} gift={gift} whatsappNumber={whatsappNumber} />
+              <GiftCard key={gift.id} gift={gift} />
             ))}
           </div>
 

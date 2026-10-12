@@ -13,6 +13,6 @@ export const BUSINESS = {
   region: 'Haryana',
   postalCode: '125001',
   address: 'Shop No. 2, Plot No. 3, Gali No. 1, HTM Colony, Azad Nagar, Hisar, Haryana 125001',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Dhanya+Trail+HTM+Colony+Azad+Nagar+Hisar+Haryana+125001',
+  mapsUrl: 'https://maps.app.goo.gl/Y33Kmf4g47GRLCgJA',
   fssai: '20826007002929',
 } as const
