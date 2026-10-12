@@ -2794,3 +2794,67 @@ p { line-height: 1.7; }
 @media (max-width: 600px) {
   .nav-whatsapp-btn { display: none !important; }
 }
+
+/* ============================================================
+   CUSTOMER REVIEWS
+   ============================================================ */
+.reviews-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--gold-light);
+  border-radius: var(--radius-full);
+  background: var(--white);
+  text-decoration: none;
+  color: var(--text-mid);
+}
+.reviews-summary:hover { border-color: var(--green); }
+.reviews-summary-rating { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--green); }
+.reviews-summary-count { font-size: 0.9rem; }
+.review-stars { color: #E8A317; letter-spacing: 0.1em; font-size: 1rem; }
+.review-stars-empty { color: var(--beige); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+@media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+.review-card {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-xs);
+}
+.review-text {
+  margin: 0;
+  color: var(--text-mid);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  white-space: pre-line;
+}
+.review-author { display: flex; align-items: center; gap: 0.65rem; margin-top: auto; }
+.review-author strong { display: block; color: var(--text-dark); font-size: 0.95rem; }
+.review-source { display: block; font-size: 0.78rem; color: var(--text-muted); }
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--gold-pale);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}

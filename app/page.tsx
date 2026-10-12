@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Settings, Product } from '@/lib/types'
 import { getAllProducts, getSettings, getFeaturedProducts, getBestsellerProducts, getCompetitorPrices } from '@/lib/products'
 import { PriceComparisonSection } from '@/components/home/PriceComparisonSection'
+import { ReviewsSection } from '@/components/home/ReviewsSection'
 import { HeroSection } from '@/components/home/HeroSection'
 import { FeaturedSection } from '@/components/home/FeaturedSection'
 import { BestsellerSection } from '@/components/home/BestsellerSection'
@@ -43,6 +44,7 @@ export default async function HomePage() {
         <FeaturedSection products={featuredProducts} whatsappNumber={whatsappNumber} />
       )}
       <PriceComparisonSection products={allProducts} competitorPrices={competitorPrices} />
+      <ReviewsSection />
       {allProducts.length > 0 && (
         <ProductWheelSection products={allProducts.slice(0, 12)} settings={settings} />
       )}
