@@ -6,7 +6,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // ALMONDS
   {
     id: 'prod-1',
-    name: 'California Almonds',
+    name: 'California Badam',
     slug: 'california-almonds',
     category: 'nuts',
     description: 'Plump, premium-grade California almonds — naturally sweet, rich in protein and healthy fats. Perfect for snacking, cooking, or soaking overnight.',
@@ -31,7 +31,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-2',
-    name: 'Kashmiri Badaam',
+    name: 'Kashmiri Badam',
     slug: 'kashmiri-badaam',
     category: 'nuts',
     description: 'Prized Kashmiri badaam — smaller, oil-richer almonds with a distinctively aromatic flavour. A traditional favourite for milk preparations and gifting.',
@@ -55,7 +55,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-3',
-    name: 'Mamra Almonds',
+    name: 'Mamra Badam',
     slug: 'mamra',
     category: 'nuts',
     description: 'Authentic Mamra almonds — thin-skinned, lightweight and packed with oil. The gold standard of almonds in Indian households.',
@@ -102,7 +102,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-5',
-    name: 'Badaam Roasted',
+    name: 'Roasted Badam',
     slug: 'badaam-roasted',
     category: 'roasted',
     description: 'Freshly roasted California almonds — lightly salted, crunchy and irresistibly snackable. Made from select whole almonds.',
@@ -127,7 +127,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // ANJEER
   {
     id: 'prod-6',
-    name: 'Anjeer Jumbo',
+    name: 'Jumbo Anjeer',
     slug: 'anjeer-jumbo',
     category: 'dry-fruits',
     description: 'Large, sun-dried figs with a naturally sweet honeyed taste. A time-honoured ingredient in Indian wellness routines.',
@@ -149,7 +149,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-7',
-    name: 'Anjeer Premium Afghani',
+    name: 'Afghani Anjeer',
     slug: 'anjeer-premium-afghani',
     category: 'dry-fruits',
     description: 'Hand-selected jumbo Afghan figs — plump, tender and extraordinarily sweet. Among the finest dried figs available.',
@@ -173,7 +173,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // RAISINS & MUNNAKA
   {
     id: 'prod-8',
-    name: 'Kishmish Green',
+    name: 'Green Kishmish',
     slug: 'kishmish-green',
     category: 'dry-fruits',
     description: 'Seedless green raisins with a bright, tangy-sweet flavour. A natural energy booster for everyday snacking and cooking.',
@@ -195,7 +195,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-9',
-    name: 'Kishmish Black',
+    name: 'Black Kishmish',
     slug: 'kishmish-black',
     category: 'dry-fruits',
     description: 'Dark, plump black raisins with a rich, concentrated sweetness. Excellent for baking, desserts and traditional preparations.',
@@ -217,7 +217,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-10',
-    name: 'Munnaka',
+    name: 'Munakka',
     slug: 'munnaka',
     category: 'dry-fruits',
     description: 'Large, seeded Munnaka raisins — long revered in traditional wellness practices for their warm properties and rich, distinctive flavour.',
@@ -263,7 +263,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-12',
-    name: 'Walnuts Giri',
+    name: 'Akhrot Giri',
     slug: 'walnuts-giri',
     category: 'nuts',
     description: 'Premium walnut halves (giri) — ready to use, freshly extracted kernels with a satisfying crunch and rich, buttery taste.',
@@ -285,7 +285,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-13',
-    name: 'Kashmiri Kagazi Walnut Sabut',
+    name: 'Kagazi Akhrot',
     slug: 'kashmiri-kagazi-walnut-sabut',
     category: 'nuts',
     description: 'Kashmiri Kagazi (paper-shell) walnuts — whole, delicate shells that crack easily by hand. A prized variety known for full, meaty kernels.',
@@ -330,7 +330,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-15',
-    name: 'Makhana 6 Sutta – Handpicked',
+    name: 'Makhana 6 Sutta',
     slug: 'makhana-6-sutta-handpicked',
     category: 'makhana',
     description: 'Premium Grade 6 Sutta Makhana — the largest, finest grade of lotus seeds. Handpicked for exceptional size and texture. A premium daily snack.',
@@ -354,7 +354,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // CASHEWS
   {
     id: 'prod-16',
-    name: 'Cashew W-320',
+    name: 'Kaju W320',
     slug: 'cashew-w320',
     category: 'nuts',
     description: 'W-320 cashews — the most popular premium grade. Whole, ivory-white kernels with a naturally creamy, buttery taste. Versatile for snacking and cooking.',
@@ -376,7 +376,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-17',
-    name: 'Cashew W-180 (Jumbo)',
+    name: 'Jumbo Kaju W180',
     slug: 'cashew-w180',
     category: 'nuts',
     description: 'W-180 cashews — the "Jumbo" grade. Noticeably larger kernels with a distinctly rich, full flavour. The premium choice for gifting.',
@@ -398,7 +398,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-18',
-    name: 'Cashew W-320 – 8 Tukda',
+    name: 'Kaju Tukda',
     slug: 'cashew-w320-8-tukda',
     category: 'nuts',
     description: 'W-320 cashew pieces (8 tukda) — finely broken pieces at great value. Ideal for cooking, sweets and garnishing.',
@@ -420,7 +420,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-19',
-    name: 'Kaju Roasted',
+    name: 'Roasted Kaju',
     slug: 'kaju-roasted',
     category: 'roasted',
     description: 'Premium whole cashews lightly dry-roasted for a satisfying crunch. A popular guilt-free snack.',
@@ -444,7 +444,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // BERRIES & DRIED FRUITS — ACCURATE DISTINCT PRODUCT PHOTOS
   {
     id: 'prod-20',
-    name: 'Sea Buckthorn Berry',
+    name: 'Sea Buckthorn',
     slug: 'sea-buckthorn-berry',
     category: 'berries',
     description: 'Vibrant Sea Buckthorn berries — a rare Himalayan superfood with a unique tangy flavour, naturally rich in antioxidants and Vitamin C.',
@@ -465,7 +465,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-21',
-    name: 'Khumani (Apricot)',
+    name: 'Khumani',
     slug: 'khumani',
     category: 'berries',
     description: 'Sun-dried Kashmiri apricots (Khumani) — soft, naturally sweet and tangy. A beloved ingredient in traditional recipes and a wholesome snack.',
@@ -635,7 +635,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-29',
-    name: 'Basil Seeds (Sabja)',
+    name: 'Sabja Seeds',
     slug: 'basil-seeds',
     category: 'seeds',
     description: 'Sabja (basil seeds) — gel-forming seeds traditionally enjoyed in drinks and desserts. A naturally cooling ingredient for warm months.',
@@ -658,7 +658,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // SAFFRON
   {
     id: 'prod-30',
-    name: 'Kashmiri Kesar — Classic',
+    name: 'Kesar Classic',
     slug: 'kesar-v1',
     category: 'saffron',
     description: 'Pure Kashmiri saffron with long, deep-crimson threads and a delicate aroma. Adds golden colour and distinctive flavour to milk, sweets and biryani. Sold in 1 g packs.',
@@ -678,7 +678,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   },
   {
     id: 'prod-31',
-    name: 'Kashmiri Kesar — Royal',
+    name: 'Kesar Royal',
     slug: 'kesar-v2',
     category: 'saffron',
     description: 'Our finest Kashmiri saffron. Hand-sorted threads, richer in crocin (colour) and safranal (aroma), for the deepest colour and fragrance. Sold in 1 g packs.',
@@ -700,7 +700,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // PISTA
   {
     id: 'prod-32',
-    name: 'Pista – Jumbo Irani Roasted',
+    name: 'Irani Pista',
     slug: 'pista-jumbo-irani-roasted',
     category: 'nuts',
     description: 'XL Jumbo Irani Pistachios — roasted to perfection with a satisfying crunch and naturally rich flavour. Generously sized for an indulgent snacking experience.',
@@ -724,7 +724,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
   // WELLNESS
   {
     id: 'prod-33',
-    name: 'Ashwagandha Powder',
+    name: 'Ashwagandha',
     slug: 'ashwagandha',
     category: 'wellness',
     description: 'Pure Ashwagandha root powder — an ancient adaptogenic herb revered in Ayurvedic tradition. A wholesome botanical addition to warm milk, smoothies and daily wellness routines.',
