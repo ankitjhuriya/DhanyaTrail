@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Product, ProductVariant, Settings } from '@/lib/types'
 import { formatWeight, formatPrice, CATEGORIES } from '@/lib/types'
+import { compareAtPrice, pricePer100g } from '@/lib/pricing'
 import { useCart } from '@/lib/cart'
 import { useToast } from '@/components/ui/Toast'
 import { generateWhatsAppMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
@@ -185,13 +186,23 @@ export function ProductDetailClient({
             </div>
 
             {/* Price display */}
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: '8px 16px', marginBottom: '32px' }}>
               {currentVariant?.price_not_configured || price === 0 ? (
                 <span className="price-not-configured">Price on Request</span>
               ) : (
-                <span style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--green-dark)', fontFamily: 'var(--font-serif)' }}>
-                  {formatPrice(price * quantity)}
-                </span>
+                <>
+                  <span style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--green-dark)', fontFamily: 'var(--font-serif)' }}>
+                    {formatPrice(price * quantity)}
+                  </span>
+                  <s style={{ fontSize: '1.25rem', color: 'var(--text-light)' }} aria-label={`Was ${formatPrice(compareAtPrice(price) * quantity)}`}>
+                    {formatPrice(compareAtPrice(price) * quantity)}
+                  </s>
+                  {currentVariant && pricePer100g(currentVariant) !== null && (
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text-muted)' }}>
+                      ({formatPrice(pricePer100g(currentVariant)!)} per 100 g)
+                    </span>
+                  )}
+                </>
               )}
             </div>
 

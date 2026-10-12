@@ -967,6 +967,46 @@ p { line-height: 1.7; }
   font-style: italic;
 }
 
+/* Tile pricing: selling price, struck-out compare-at price, pack size, per-100 g */
+.product-card-pricing { margin-top: auto; }
+.product-card-price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+.product-card-price-row .product-card-price {
+  font-size: 1.25rem;
+  font-family: var(--font-serif);
+  margin-top: 0;
+}
+.product-card-mrp {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  text-decoration-thickness: 1.5px;
+}
+.product-card-weight {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.product-card-per100 {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.125rem;
+}
+.product-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--ivory);
+}
+
 .product-card-actions {
   padding: 0 var(--space-md) var(--space-md);
   display: flex;

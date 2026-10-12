@@ -7,7 +7,7 @@ interface ProductGridProps {
   emptyMessage?: string
 }
 
-export function ProductGrid({ products, whatsappNumber, emptyMessage = 'No products found.' }: ProductGridProps) {
+export function ProductGrid({ products, emptyMessage = 'No products found.' }: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div style={{
@@ -24,11 +24,7 @@ export function ProductGrid({ products, whatsappNumber, emptyMessage = 'No produ
   return (
     <div className="product-grid">
       {products.map(product => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          whatsappNumber={whatsappNumber}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   )
