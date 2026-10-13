@@ -62,37 +62,15 @@ export function Navbar({ settings, searchItems }: NavbarProps) {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation" style={{ height: 'auto', padding: '12px 0' }}>
         <div className="container">
           <div className="nav-inner" style={{ justifyContent: 'space-between' }}>
-            {/* Prominent Dhanya Trail Brand Logo */}
-            <Link href="/" className="nav-logo" aria-label="Dhanya Trail - Home" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px' }}>
-              <div className="nav-brand-mark" style={{
-                width: '46px',
-                height: '46px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%)',
-                border: '2px solid var(--gold)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: 'var(--shadow-gold)',
-                flexShrink: 0
-              }}>
-                <span style={{ color: 'var(--gold-light)', fontSize: '1.4rem', fontFamily: 'var(--font-serif)', fontWeight: 700 }}>
-                  ध
-                </span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span className="nav-brand-text" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--cream)', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
-                    Dhanya Trail
-                  </span>
-                  <span className="nav-brand-devanagari" style={{ fontSize: '0.9rem', color: 'var(--gold-light)', fontWeight: 700 }}>
-                    | धन्य
-                  </span>
-                </div>
-                <span className="nav-brand-tagline" style={{ fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold-pale)', marginTop: '3px' }}>
-                  NUTS • DRY FRUITS • HEALTHY SNACKS
-                </span>
-              </div>
+            {/* Store logo (reversed version for the green header) */}
+            <Link href="/" className="nav-logo" aria-label="Dhanya Trail - Home">
+              <img
+                src="/images/logo-header.png"
+                alt="Dhanya Trail"
+                className="nav-logo-img"
+                width={268}
+                height={112}
+              />
             </Link>
 
             {/* Desktop Navigation */}

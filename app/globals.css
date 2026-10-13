@@ -2972,3 +2972,9 @@ p { line-height: 1.7; }
 @media (max-width: 900px) {
   .nav-store-link { border-color: transparent; }
 }
+
+/* Store logo in the header (image is 2x for sharp high-density screens) */
+.nav-logo { display: flex; align-items: center; }
+.nav-logo-img { display: block; height: 64px; width: auto; }
+@media (max-width: 600px) { .nav-logo-img { height: 46px; } }
+@media (max-width: 380px) { .nav-logo-img { height: 42px; } }
