@@ -16,4 +16,6 @@ export const BUSINESS = {
   // Google Maps business listing (cid = the listing's place ID); opens the "Dhanya Trail" pin
   mapsUrl: 'https://www.google.com/maps?cid=17710142788779023371',
   fssai: '20826007002929',
+  // UPI ID that receives website payments
+  upiId: '7054223858@ybl',
 } as const

@@ -5,6 +5,7 @@ import { useCart } from '@/lib/cart'
 import { formatWeight, formatPrice } from '@/lib/types'
 import { generateWhatsAppMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
 import { QuantitySelector } from '@/components/products/QuantitySelector'
+import { FREE_DELIVERY_ABOVE } from '@/lib/delivery'
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, clearCart, getTotal } = useCart()
@@ -123,26 +124,31 @@ export default function CartPage() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid var(--cream-dark)' }}>
               <span>Delivery</span>
-              <span style={{ color: 'var(--green-dark)', fontWeight: 600 }}>Calculated on Order</span>
+              <span style={{ color: 'var(--green-dark)', fontWeight: 600 }}>
+                {total >= FREE_DELIVERY_ABOVE ? 'Free' : 'Calculated at checkout'}
+              </span>
             </div>
+            {total < FREE_DELIVERY_ABOVE && (
+              <div className="checkout-free-hint" style={{ marginTop: '8px' }}>
+                Add {formatPrice(FREE_DELIVERY_ABOVE - total)} more for free delivery. Always free in Hisar.
+              </div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px 0', fontSize: '1.25rem', fontWeight: 700, color: 'var(--green-dark)' }}>
-              <span>Estimated Total</span>
+              <span>Items Total</span>
               <span>{formatPrice(total)}</span>
             </div>
 
-            <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-whatsapp btn-lg"
-                style={{ textAlign: 'center', justifyContent: 'center' }}
-              >
-                Complete Order via WhatsApp
-              </a>
+            <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <Link href="/checkout" className="btn btn-primary btn-lg" style={{ textAlign: 'center', justifyContent: 'center' }}>
+                Proceed to Checkout
+              </Link>
               <Link href="/shop" className="btn btn-outline btn-lg" style={{ textAlign: 'center' }}>
                 Continue Shopping
               </Link>
+              <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+                Pay securely by UPI. Prefer to order by chat?{' '}
+                <a href={waUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--green)', textDecoration: 'underline' }}>Order on WhatsApp</a>
+              </p>
             </div>
           </div>
         </div>
