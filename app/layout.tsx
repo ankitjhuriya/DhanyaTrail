@@ -4,7 +4,10 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { CartDrawer } from '@/components/layout/CartDrawer'
 import { StickyWhatsApp } from '@/components/layout/StickyWhatsApp'
-import { getSettings } from '@/lib/products'
+import { getSettings, getAllProducts } from '@/lib/products'
+import { getDisplayVariant } from '@/lib/pricing'
+import { CATEGORIES } from '@/lib/types'
+import type { SearchItem } from '@/components/layout/SearchOverlay'
 import { ToastProvider } from '@/components/ui/Toast'
 import { BUSINESS, SITE_URL } from '@/lib/business'
 
@@ -41,7 +44,21 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const settings = await getSettings().catch(() => ({}))
+  const [settings, products] = await Promise.all([
+    getSettings().catch(() => ({})),
+    getAllProducts().catch(() => []),
+  ])
+  const searchItems: SearchItem[] = products.map(p => {
+    const v = getDisplayVariant(p)
+    return {
+      slug: p.slug,
+      name: p.name,
+      category: CATEGORIES.find(c => c.slug === p.category)?.name || p.category,
+      image: p.thumbnail || p.images?.[0],
+      price: v?.price ?? undefined,
+      weight: v?.weight_grams,
+    }
+  })
 
   return (
     <html lang="en">
@@ -78,7 +95,7 @@ export default async function RootLayout({
       </head>
       <body>
         <ToastProvider>
-          <Navbar settings={settings} />
+          <Navbar settings={settings} searchItems={searchItems} />
           <CartDrawer settings={settings} />
           <main>{children}</main>
           <Footer settings={settings} />

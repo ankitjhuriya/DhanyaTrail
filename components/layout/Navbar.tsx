@@ -1,14 +1,16 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cart'
-import { Settings } from '@/lib/types'
+import { Settings, CATEGORIES } from '@/lib/types'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { BUSINESS } from '@/lib/business'
+import { SearchOverlay, SearchItem } from './SearchOverlay'
 
 interface NavbarProps {
   settings: Settings
+  searchItems: SearchItem[]
 }
 
 const NAV_LINKS = [
@@ -19,10 +21,12 @@ const NAV_LINKS = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export function Navbar({ settings }: NavbarProps) {
+export function Navbar({ settings, searchItems }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const closeSearch = useCallback(() => setSearchOpen(false), [])
   const { getItemCount, openCart } = useCart()
   const itemCount = mounted ? getItemCount() : 0
   const waPhone = settings.whatsapp_number || '917082977350'
@@ -53,8 +57,6 @@ export function Navbar({ settings }: NavbarProps) {
         <span className="announcement-secondary">
           <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer">Visit our store in Hisar</a>
         </span>
-        <span className="announcement-sep announcement-secondary">•</span>
-        <span className="announcement-secondary">Quick WhatsApp Ordering</span>
       </div>
 
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation" style={{ height: 'auto', padding: '12px 0' }}>
@@ -80,14 +82,14 @@ export function Navbar({ settings }: NavbarProps) {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span className="nav-brand-text" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--green-dark)', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
+                  <span className="nav-brand-text" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.65rem', fontWeight: 700, color: 'var(--cream)', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
                     Dhanya Trail
                   </span>
-                  <span className="nav-brand-devanagari" style={{ fontSize: '0.9rem', color: 'var(--gold-dark)', fontWeight: 700 }}>
+                  <span className="nav-brand-devanagari" style={{ fontSize: '0.9rem', color: 'var(--gold-light)', fontWeight: 700 }}>
                     | धन्य
                   </span>
                 </div>
-                <span className="nav-brand-tagline" style={{ fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold-dark)', marginTop: '3px' }}>
+                <span className="nav-brand-tagline" style={{ fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold-pale)', marginTop: '3px' }}>
                   NUTS • DRY FRUITS • HEALTHY SNACKS
                 </span>
               </div>
@@ -95,7 +97,20 @@ export function Navbar({ settings }: NavbarProps) {
 
             {/* Desktop Navigation */}
             <div className="nav-links" role="menubar">
-              {NAV_LINKS.map(link => (
+              {NAV_LINKS.map(link => link.href === '/shop' ? (
+                <div key={link.href} className="nav-dropdown">
+                  <Link href="/shop" className="nav-link nav-dropdown-trigger" role="menuitem" aria-haspopup="true">
+                    Shop
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                  </Link>
+                  <div className="nav-dropdown-menu" role="menu" aria-label="Shop by category">
+                    <Link href="/shop" className="nav-dropdown-item nav-dropdown-all" role="menuitem">All Products</Link>
+                    {CATEGORIES.map(c => (
+                      <Link key={c.slug} href={`/${c.slug}`} className="nav-dropdown-item" role="menuitem">{c.name}</Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -125,12 +140,12 @@ export function Navbar({ settings }: NavbarProps) {
               </a>
 
               {/* Search */}
-              <Link href="/shop" className="nav-icon-btn nav-search-btn" aria-label="Search products">
+              <button type="button" className="nav-icon-btn nav-search-btn" aria-label="Search products" onClick={() => setSearchOpen(true)}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"/>
                   <path d="m21 21-4.35-4.35"/>
                 </svg>
-              </Link>
+              </button>
 
               {/* WhatsApp */}
               <a
@@ -180,6 +195,8 @@ export function Navbar({ settings }: NavbarProps) {
         </div>
       </nav>
 
+      {searchOpen && <SearchOverlay items={searchItems} onClose={closeSearch} />}
+
       {/* Mobile Menu */}
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} role="dialog" aria-modal="true" aria-label="Navigation menu">
         <div className="mobile-menu-backdrop" onClick={() => setMobileOpen(false)} />
@@ -206,14 +223,24 @@ export function Navbar({ settings }: NavbarProps) {
           {/* Links */}
           <nav>
             {NAV_LINKS.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="mobile-nav-link"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
+              <div key={link.href}>
+                <Link
+                  href={link.href}
+                  className="mobile-nav-link"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+                {link.href === '/shop' && (
+                  <div className="mobile-subnav">
+                    {CATEGORIES.map(c => (
+                      <Link key={c.slug} href={`/${c.slug}`} className="mobile-subnav-link" onClick={() => setMobileOpen(false)}>
+                        {c.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
