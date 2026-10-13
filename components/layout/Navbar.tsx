@@ -182,9 +182,7 @@ export function Navbar({ settings, searchItems }: NavbarProps) {
           {/* Header */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 'var(--space-xl)' }}>
             <div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--green)' }}>
-                Dhanya Trail
-              </div>
+              <img src="/images/logo-colour.png" alt="Dhanya Trail" className="mobile-menu-logo" width={268} height={112} />
               <div style={{ fontSize: '0.6875rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', marginTop: 2 }}>
                 NUTS • DRY FRUITS • HEALTHY SNACKS
               </div>

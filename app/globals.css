@@ -2978,3 +2978,7 @@ p { line-height: 1.7; }
 .nav-logo-img { display: block; height: 64px; width: auto; }
 @media (max-width: 600px) { .nav-logo-img { height: 46px; } }
 @media (max-width: 380px) { .nav-logo-img { height: 42px; } }
+
+/* Store logo in the footer (light version) and phone menu (full colour) */
+.footer-logo-img { display: block; height: 72px; width: auto; margin-bottom: 0.6rem; }
+.mobile-menu-logo { display: block; height: 52px; width: auto; margin-bottom: 0.35rem; }

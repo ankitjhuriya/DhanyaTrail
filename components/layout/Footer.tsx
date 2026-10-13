@@ -46,8 +46,9 @@ export function Footer({ settings }: FooterProps) {
         <div className="footer-grid">
           {/* Brand Column */}
           <div>
-            <div className="footer-brand-devanagari">धन्य</div>
-            <div className="footer-brand-name">Dhanya Trail</div>
+            <Link href="/" aria-label="Dhanya Trail - Home">
+              <img src="/images/logo-header.png" alt="Dhanya Trail" className="footer-logo-img" width={268} height={112} />
+            </Link>
             <div className="footer-brand-tagline">NUTS • DRY FRUITS • HEALTHY SNACKS</div>
             <p className="footer-brand-desc">
               A journey towards better choices. Premium dry fruits, nuts, berries, seeds and traditional wellness essentials — thoughtfully selected for everyday goodness.
