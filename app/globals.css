@@ -2982,3 +2982,14 @@ p { line-height: 1.7; }
 /* Store logo in the footer (light version) and phone menu (full colour) */
 .footer-logo-img { display: block; height: 72px; width: auto; margin-bottom: 0.6rem; }
 .mobile-menu-logo { display: block; height: 52px; width: auto; margin-bottom: 0.35rem; }
+
+/* Footer: logo column + Quick Links, Shop By, Contact Us, Policies side by side */
+.footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.35fr 1fr; gap: var(--space-2xl); }
+@media (max-width: 1200px) {
+  .footer-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid > :first-child { grid-column: 1 / -1; max-width: 520px; }
+}
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-xl) var(--space-lg); }
+  .footer-grid > :nth-child(4) { grid-column: 1 / -1; }
+}

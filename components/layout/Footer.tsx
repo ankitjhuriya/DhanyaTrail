@@ -108,14 +108,15 @@ export function Footer({ settings }: FooterProps) {
                 </a>
               </span>
             </div>
+          </div>
 
-            <div style={{ marginTop: 'var(--space-lg)' }}>
-              <div className="footer-heading">Policies</div>
-              <div className="footer-links">
-                {POLICY_LINKS.map(link => (
-                  <Link key={link.href} href={link.href} className="footer-link">{link.label}</Link>
-                ))}
-              </div>
+          {/* Policies */}
+          <div>
+            <div className="footer-heading">Policies</div>
+            <div className="footer-links">
+              {POLICY_LINKS.map(link => (
+                <Link key={link.href} href={link.href} className="footer-link">{link.label}</Link>
+              ))}
             </div>
           </div>
         </div>
