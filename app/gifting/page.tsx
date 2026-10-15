@@ -23,9 +23,9 @@ export const metadata: Metadata = {
 export const revalidate = 60
 
 const STEPS = [
-  { title: 'Choose', text: 'Pick your gift box and quantity.' },
-  { title: 'Share', text: 'Send your delivery address and preferred date.' },
-  { title: 'Confirm', text: 'Confirm your order on WhatsApp. We pack it gift-ready.' },
+  { title: 'Choose', text: 'Pick your gift box, design and 1, 2 or 5 pieces.' },
+  { title: 'Add to cart', text: 'Add it to your cart and enter your delivery address at checkout.' },
+  { title: 'Pay', text: 'Check out and pay securely by UPI. We pack it gift-ready.' },
 ]
 
 const CORPORATE_POINTS = [
@@ -130,7 +130,7 @@ export default async function GiftingPage() {
             ))}
           </ol>
           <p className="gifting-note">
-            Home delivery at a small additional charge, based on weight and pin code. Prefer to see the boxes first? Visit our store in Hisar.
+            Free delivery on orders above ₹1,499 and always free in Hisar; otherwise ₹60 for Delhi NCR and ₹100 elsewhere. Prefer to see the boxes first? Visit our store in Hisar.
           </p>
         </div>
       </section>

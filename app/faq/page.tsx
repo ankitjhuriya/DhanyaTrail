@@ -9,7 +9,15 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: 'How do I place an order?',
-    a: 'You can browse products on our website and order directly via WhatsApp or add items to your cart and checkout through WhatsApp with our team.'
+    a: 'Add products to your cart, click Checkout and enter your delivery details. You will get an order number straight away. If you prefer, you can also order by chatting with us on WhatsApp.'
+  },
+  {
+    q: 'How do I pay?',
+    a: 'By UPI. After placing your order you will see a QR code and a "Pay with UPI app" button that works with Google Pay, PhonePe, Paytm and any UPI app. The amount and your order number are filled in for you. We confirm your payment before dispatch.'
+  },
+  {
+    q: 'How much is delivery?',
+    a: 'Free on orders of ₹1,499 and above, and always free in Hisar. Otherwise ₹60 for Delhi NCR and ₹100 for the rest of India. The exact charge is shown at checkout before you pay.'
   },
   {
     q: 'Where are your products sourced from?',

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { FREE_DELIVERY_ABOVE, DELIVERY_RATES } from '@/lib/delivery'
 
 export const metadata: Metadata = {
   title: 'Shipping Policy | Dhanya Trail',
@@ -34,12 +35,23 @@ export default function ShippingPolicyPage() {
 
         <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>3. Shipping Charges</h2>
         <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
-          Shipping charges are calculated at order confirmation based on total parcel weight and destination pin code. We strive to provide the most economical and reliable courier partners.
+          The delivery charge is shown at checkout, before you pay, based on your order value and PIN code:
+        </p>
+        <ul style={{ paddingLeft: '20px', color: 'var(--text-mid)', lineHeight: 1.8 }}>
+          <li><strong>Free delivery</strong> on orders of ₹{FREE_DELIVERY_ABOVE.toLocaleString('en-IN')} and above, anywhere in India.</li>
+          <li><strong>Hisar:</strong> always free.</li>
+          <li><strong>Delhi NCR</strong> (Delhi, Gurugram, Faridabad, Noida, Ghaziabad): ₹{DELIVERY_RATES.ncr}.</li>
+          <li><strong>Rest of India:</strong> ₹{DELIVERY_RATES.rest}.</li>
+        </ul>
+
+        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>4. Payment and Dispatch</h2>
+        <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
+          Orders are paid by UPI at checkout. We confirm your payment before dispatch, then pack and send your order from our Hisar store.
         </p>
 
-        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>4. Order Tracking</h2>
+        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>5. Order Tracking</h2>
         <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
-          Once your package is handed over to the courier partner, tracking details will be shared directly via WhatsApp or SMS.
+          Once your package is handed over to the courier partner, tracking details will be shared with you via WhatsApp or SMS on the mobile number you gave at checkout.
         </p>
 
         <div style={{ marginTop: '32px' }}>

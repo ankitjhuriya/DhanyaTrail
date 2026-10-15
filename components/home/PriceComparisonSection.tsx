@@ -18,7 +18,7 @@ export function PriceComparisonSection({ products, competitorPrices }: PriceComp
   return (
     <section className="section" style={{ background: 'var(--ivory)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
+        <div className="section-head">
           <span className="section-label">Honest Pricing</span>
           <h2 className="section-title">Better prices, per 100 g</h2>
           <div className="gold-divider gold-divider-center" />

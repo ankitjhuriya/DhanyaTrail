@@ -214,24 +214,21 @@ export function ProductDetailClient({
             </div>
 
             {/* Action buttons */}
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <div style={{ marginBottom: '24px' }}>
               <button
                 onClick={handleAddToCart}
                 className="btn btn-primary btn-lg"
                 disabled={currentVariant?.price_not_configured || price === 0}
-                style={{ flex: '1 1 200px' }}
+                style={{ width: '100%', justifyContent: 'center' }}
               >
                 Add to Cart
               </button>
-              <a
-                href={directWaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-whatsapp btn-lg"
-                style={{ flex: '1 1 200px' }}
-              >
-                Order via WhatsApp
-              </a>
+              <p style={{ marginTop: '10px', fontSize: '0.88rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+                Secure UPI checkout.{' '}
+                <a href={directWaUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--green)', textDecoration: 'underline' }}>
+                  Questions? Chat on WhatsApp
+                </a>
+              </p>
             </div>
 
             {comparison && <PriceComparisonBox comparison={comparison} />}
@@ -245,7 +242,7 @@ export function ProductDetailClient({
                 <li>100% pure & authentic natural quality</li>
                 <li>Carefully selected & hygienic packaging</li>
                 <li>Fast dispatch from Hisar, Haryana</li>
-                <li>Easy direct support & re-ordering on WhatsApp</li>
+                <li>Secure UPI checkout, with support on WhatsApp</li>
               </ul>
             </div>
           </div>
@@ -253,8 +250,8 @@ export function ProductDetailClient({
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div style={{ marginTop: 'var(--space-3xl)' }}>
-            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
+          <div className="related-grid" style={{ marginTop: 'var(--space-3xl)' }}>
+            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: 'var(--space-xl)' }}>
               You May Also Like
             </h2>
             <ProductGrid products={relatedProducts} whatsappNumber={whatsappNumber} />

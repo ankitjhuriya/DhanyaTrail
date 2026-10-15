@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { Settings } from '@/lib/types'
+import { GOOGLE_RATING } from '@/lib/reviews'
+import { FREE_DELIVERY_ABOVE } from '@/lib/delivery'
 
 export function HeroSection({ settings }: { settings: Settings }) {
   return (
@@ -40,30 +42,21 @@ export function HeroSection({ settings }: { settings: Settings }) {
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </Link>
-              <Link href="/shop" className="btn btn-outline btn-lg" id="hero-explore-btn">
-                Explore Collection
+              <Link href="/gifting" className="btn btn-outline btn-lg" id="hero-gifting-btn">
+                🪔 Diwali Gift Boxes
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div style={{
-              display: 'flex',
-              gap: 'var(--space-xl)',
-              marginTop: 'var(--space-2xl)',
-              flexWrap: 'wrap',
-            }}>
+            {/* Trust indicators: always one row of three */}
+            <div className="hero-stats">
               {[
-                { value: '33+', label: 'Premium Products' },
-                { value: '100%', label: 'Natural & Pure' },
-                { value: '⚡', label: 'WhatsApp Ordering' },
+                { value: '30+', label: 'Products' },
+                { value: `${GOOGLE_RATING.rating.toFixed(1)}★`, label: 'Google rating' },
+                { value: 'Free', label: `Delivery above ₹${FREE_DELIVERY_ABOVE.toLocaleString('en-IN')}` },
               ].map((item) => (
-                <div key={item.label}>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, color: 'var(--green)' }}>
-                    {item.value}
-                  </div>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)', marginTop: 2 }}>
-                    {item.label}
-                  </div>
+                <div key={item.label} className="hero-stat">
+                  <div className="hero-stat-value">{item.value}</div>
+                  <div className="hero-stat-label">{item.label}</div>
                 </div>
               ))}
             </div>

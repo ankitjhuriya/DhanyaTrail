@@ -13,7 +13,7 @@ export function ReviewsSection() {
   return (
     <section className="section" style={{ background: 'var(--cream)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
+        <div className="section-head">
           <span className="section-label">What Our Customers Say</span>
           <h2 className="section-title">Loved by customers in Hisar</h2>
           <div className="gold-divider gold-divider-center" />

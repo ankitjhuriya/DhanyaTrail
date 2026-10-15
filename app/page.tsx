@@ -5,19 +5,18 @@ import { PriceComparisonSection } from '@/components/home/PriceComparisonSection
 import { ReviewsSection } from '@/components/home/ReviewsSection'
 import { HeroSection } from '@/components/home/HeroSection'
 import { FeaturedSection } from '@/components/home/FeaturedSection'
-import { BestsellerSection } from '@/components/home/BestsellerSection'
-import { ProductWheelSection } from '@/components/home/ProductWheelSection'
-import { WellnessSection } from '@/components/home/WellnessSection'
-import { WhyDhanya } from '@/components/home/WhyDhanya'
+import { CategoryStrip } from '@/components/home/CategoryStrip'
 import { BrandStory } from '@/components/home/BrandStory'
 import { DiwaliGiftingBanner } from '@/components/home/DiwaliGiftingBanner'
 
 export const metadata: Metadata = {
   title: 'Dhanya Trail | Premium Dry Fruits, Nuts, Berries & Healthy Snacks',
-  description: 'Shop premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials from Dhanya Trail. Carefully selected products with easy WhatsApp ordering from Hisar, Haryana.',
+  description: 'Shop premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials from Dhanya Trail, Hisar. Better prices per 100 g, Diwali gift boxes and secure UPI checkout.',
 }
 
 export const revalidate = 60
+
+const BESTSELLER_COUNT = 6
 
 export default async function HomePage() {
   const [settingsData, allProducts, featuredProducts, bestsellerProducts, competitorPrices] = await Promise.all([
@@ -29,32 +28,20 @@ export default async function HomePage() {
   ])
   const settings: Settings = settingsData
 
-  const wellnessProducts = allProducts.filter((p: Product) =>
-    ['wellness', 'seeds'].includes(p.category) ||
-    ['chia-seeds', 'flax-seeds', 'pumpkin-seeds', 'basil-seeds', 'sunflower-seeds', 'goji-berry', 'ashwagandha'].includes(p.slug)
-  ).slice(0, 7)
-
-  const whatsappNumber = settings.whatsapp_number || '917082977350'
+  // One "Bestsellers" list: Featured first, then Bestsellers, without repeats
+  const bestsellers: Product[] = []
+  for (const p of [...featuredProducts, ...bestsellerProducts]) {
+    if (!bestsellers.some(b => b.slug === p.slug)) bestsellers.push(p)
+  }
 
   return (
     <>
       <HeroSection settings={settings} />
       <DiwaliGiftingBanner />
-      {featuredProducts.length > 0 && (
-        <FeaturedSection products={featuredProducts} whatsappNumber={whatsappNumber} />
-      )}
+      {bestsellers.length > 0 && <FeaturedSection products={bestsellers.slice(0, BESTSELLER_COUNT)} />}
       <PriceComparisonSection products={allProducts} competitorPrices={competitorPrices} />
       <ReviewsSection />
-      {allProducts.length > 0 && (
-        <ProductWheelSection products={allProducts.slice(0, 12)} settings={settings} />
-      )}
-      {bestsellerProducts.length > 0 && (
-        <BestsellerSection products={bestsellerProducts} whatsappNumber={whatsappNumber} />
-      )}
-      <WhyDhanya />
-      {wellnessProducts.length > 0 && (
-        <WellnessSection products={wellnessProducts} />
-      )}
+      {allProducts.length > 0 && <CategoryStrip products={allProducts} />}
       <BrandStory />
     </>
   )

@@ -56,9 +56,9 @@ export default function AboutPage() {
                 </div>
               </li>
               <li style={{ display: 'flex', gap: '12px' }}>
-                <span style={{ fontSize: '1.5rem' }}>💬</span>
+                <span style={{ fontSize: '1.5rem' }}>🔒</span>
                 <div>
-                  <strong>Personal Touch:</strong> Seamless WhatsApp ordering and dedicated support.
+                  <strong>Easy, Secure Ordering:</strong> Order online and pay by UPI, with personal support on WhatsApp.
                 </div>
               </li>
             </ul>

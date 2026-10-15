@@ -1,33 +1,44 @@
+import Link from 'next/link'
+import { BUSINESS } from '@/lib/business'
+
+// "Our Story" + "Why Dhanya Trail" in one compact section, placed just above the footer
+const PROMISES = [
+  { icon: '🌿', title: 'Carefully selected', text: 'Every product is chosen in our Hisar store for quality, freshness and taste.' },
+  { icon: '✨', title: 'Premium varieties', text: 'Kashmiri walnuts, Mamra almonds, jumbo anjeer and more, from trusted origins.' },
+  { icon: '🌱', title: 'Natural goodness', text: 'No artificial additives or unnecessary processing.' },
+  { icon: '🔒', title: 'Easy, secure ordering', text: 'Checkout online and pay by UPI. Dispatched from Hisar within 24–48 hours.' },
+]
+
 export function BrandStory() {
   return (
-    <section className="section" style={{ background: 'var(--ivory)' }}>
+    <section className="section" style={{ background: 'var(--cream)' }}>
       <div className="container">
-        <div className="brand-story">
-          <div className="brand-story-image">
-            <img
-              src="/images/hero.jpg"
-              alt="Dhanya Trail — premium dry fruits collection arranged beautifully"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
-          <div>
+        <div className="story">
+          <div className="story-intro">
             <span className="section-label">Our Story</span>
             <h2 className="section-title">The Dhanya Trail</h2>
             <div className="gold-divider" />
-            <blockquote className="brand-story-quote">
-              A journey towards better choices.
-            </blockquote>
-            <p style={{ color: 'var(--text-mid)', lineHeight: 1.8, marginBottom: 'var(--space-lg)' }}>
-              Dhanya Trail brings together carefully selected dry fruits, nuts, berries, seeds and traditional wellness essentials under one warm and trustworthy brand.
+            <p className="story-quote">A journey towards better choices.</p>
+            <p className="story-text">
+              Dhanya Trail is a dry fruits store in Hisar, Haryana. We bring together carefully selected dry fruits, nuts,
+              berries, seeds and traditional wellness essentials, and make them easy to order from anywhere in India.
             </p>
-            <p style={{ color: 'var(--text-mid)', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>
-              Our aim is simple — to make premium everyday nourishment easier to discover, choose and enjoy. We are proud to serve from Hisar, Haryana, bringing the finest products to your door.
-            </p>
-            <div style={{ display: 'flex', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
-              <a href="/shop" className="btn btn-primary">Shop Now</a>
-              <a href="/about" className="btn btn-outline">Our Story</a>
+            <div className="story-actions">
+              <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">📍 Visit our Hisar store</a>
+              <Link href="/about" className="btn btn-outline">Read our story</Link>
             </div>
           </div>
+          <ul className="story-promises" aria-label="Why Dhanya Trail">
+            {PROMISES.map(p => (
+              <li key={p.title}>
+                <span className="story-promise-icon" aria-hidden="true">{p.icon}</span>
+                <span>
+                  <strong>{p.title}</strong>
+                  <span>{p.text}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

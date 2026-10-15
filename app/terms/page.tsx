@@ -32,7 +32,12 @@ export default function TermsPage() {
 
         <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>3. Order Confirmation</h2>
         <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
-          Orders placed via website or WhatsApp are confirmed upon review of inventory and delivery pin code feasibility.
+          Orders placed on the website or via WhatsApp are confirmed after we review stock and delivery to your PIN code.
+        </p>
+
+        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--green)', marginTop: '24px' }}>4. Payment</h2>
+        <p style={{ color: 'var(--text-mid)', lineHeight: 1.8 }}>
+          Website orders are paid by UPI to Dhanya Trail. Please pay the exact amount shown and mention your order number. Orders are dispatched only after we have confirmed the payment in our account. If we cannot fulfil an order you have paid for, we refund the full amount to the same UPI account.
         </p>
 
         <div style={{ marginTop: '32px' }}>

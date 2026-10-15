@@ -3057,3 +3057,109 @@ p { line-height: 1.7; }
 .cart-panel-wa-link { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; width: 100%; background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; text-decoration: underline; padding: 4px 0; }
 .cart-panel-wa-link:hover { color: var(--green); }
 @media (max-width: 600px) { .checkout-title { font-size: 1.35rem; } }
+
+/* ============================================================
+   AUDIT FIXES (Oct 2026): spacing, stacking, compact homepage
+   ============================================================ */
+
+/* B1: tighter vertical rhythm between sections */
+.section { padding: 72px 0; }
+.section-head { text-align: center; margin-bottom: var(--space-2xl); }
+@media (max-width: 768px) {
+  .section { padding: 48px 0; }
+  .section-head { margin-bottom: var(--space-xl); }
+  .section-subtitle { font-size: 1rem; }
+}
+
+/* Hero: less empty space; on phones a shorter photo so the stats and image arrive sooner */
+.hero { min-height: auto; padding: var(--space-3xl) 0; }
+@media (max-width: 768px) {
+  .hero { padding: var(--space-xl) 0 var(--space-lg); gap: var(--space-xl); }
+  .hero-subtitle { margin-bottom: var(--space-xl); }
+  .hero-image-wrap { aspect-ratio: 4 / 3; }
+  .hero-badge { left: var(--space-md); bottom: var(--space-md); padding: 0.6rem 1rem; }
+  .hero-badge-value { font-size: 1.1rem; }
+}
+
+/* A2: hero stats always on one row of three */
+.hero-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: var(--space-xl); margin-top: var(--space-2xl); }
+.hero-stat-value { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--green); line-height: 1.2; }
+.hero-stat-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+@media (max-width: 768px) {
+  .hero-stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); margin-top: var(--space-xl); justify-content: stretch; }
+  .hero-stat-value { font-size: 1.25rem; }
+  .hero-stat-label { font-size: 0.7rem; letter-spacing: 0.02em; line-height: 1.3; }
+}
+
+/* A4: Bestsellers in rows of three on desktop (6 products = 2 full rows) */
+@media (min-width: 901px) { .product-grid-3 .product-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* A5: Shop by category */
+.category-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+@media (max-width: 900px) { .category-strip { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); } }
+.category-card {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem; border-radius: var(--radius-md);
+  background: var(--white); border: 1px solid var(--ivory-dark); text-decoration: none; color: inherit;
+  transition: all var(--transition-fast);
+}
+.category-card:hover { border-color: var(--green); box-shadow: var(--shadow-sm); }
+.category-card img, .category-card-ph { width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; background: var(--ivory); display: flex; align-items: center; justify-content: center; color: var(--gold); font-weight: 700; }
+.category-card-text { display: flex; flex-direction: column; min-width: 0; }
+.category-card-text strong { color: var(--text-dark); font-size: 0.95rem; line-height: 1.25; }
+.category-card-text small { color: var(--text-muted); font-size: 0.78rem; }
+
+/* A6: Our Story + Why Dhanya Trail */
+.story { display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--space-3xl); align-items: center; }
+@media (max-width: 900px) { .story { grid-template-columns: 1fr; gap: var(--space-xl); } }
+.story-quote { font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: var(--green); margin-bottom: 0.75rem; }
+.story-text { color: var(--text-mid); line-height: 1.75; margin-bottom: var(--space-lg); }
+.story-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+.story-promises { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+@media (max-width: 600px) { .story-promises { grid-template-columns: 1fr; gap: var(--space-sm); } }
+.story-promises li { display: flex; gap: 0.75rem; align-items: flex-start; background: var(--white); border: 1px solid var(--ivory-dark); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
+.story-promise-icon { font-size: 1.3rem; line-height: 1; }
+.story-promises li strong { display: block; color: var(--green); font-size: 0.98rem; margin-bottom: 0.15rem; }
+.story-promises li span span { color: var(--text-mid); font-size: 0.88rem; line-height: 1.55; }
+
+/* B3: reviews badge stays on one line */
+.reviews-summary { flex-wrap: nowrap; white-space: nowrap; }
+@media (max-width: 400px) {
+  .reviews-summary { gap: 0.35rem; padding: 0.45rem 0.8rem; }
+  .reviews-summary-rating { font-size: 1.15rem; }
+  .reviews-summary-count { font-size: 0.82rem; }
+  .reviews-summary .review-stars { font-size: 0.85rem; letter-spacing: 0; }
+}
+
+/* B4: "You may also like" in one row of four on desktop */
+@media (min-width: 901px) { .related-grid .product-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* B5: nothing below 12px */
+.badge { font-size: 0.75rem; }
+.footer-brand-tagline { font-size: 0.75rem; }
+.gift-tier-off { font-size: 0.75rem; }
+@media (max-width: 768px) { .announcement-bar { font-size: 0.75rem; } }
+
+/* B2: compact footer on phones */
+@media (max-width: 760px) {
+  .footer { padding: var(--space-2xl) 0 var(--space-lg); }
+  .footer-grid { gap: var(--space-lg) var(--space-md); margin-bottom: var(--space-xl); }
+  .footer-brand-desc { display: none; }
+  .footer-logo-img { height: 56px; }
+  .footer-brand-tagline { margin-bottom: var(--space-md); }
+  .footer-heading { margin-bottom: 0.6rem; }
+  .footer-links { gap: 0.15rem; }
+  .footer-links .footer-link { display: block; padding: 0.3rem 0; }
+  .footer-contact-item { margin-bottom: 0.5rem; }
+  .footer-bottom { flex-direction: column; gap: 0.35rem; text-align: center; padding-top: var(--space-md); }
+}
+@media (max-width: 760px) {
+  /* Policies: one wrapping row of links instead of a tall half-width column */
+  .footer-grid > :nth-child(5) { grid-column: 1 / -1; }
+  .footer-grid > :nth-child(5) .footer-links { flex-direction: row; flex-wrap: wrap; gap: 0 1.1rem; }
+  .footer-links .footer-link { padding: 0.25rem 0; }
+}
+@media (max-width: 768px) { .hero-stat-label { font-size: 0.75rem; } }
+@media (max-width: 760px) {
+  .footer-grid > :nth-child(5) .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--space-md); }
+}
+.category-card-text { text-align: left; }
