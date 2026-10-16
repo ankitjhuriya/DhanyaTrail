@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 60
+export const revalidate = 600 // 10 minutes
 
 const STEPS = [
   { title: 'Choose', text: 'Pick your gift box, design and 1, 2 or 5 pieces.' },

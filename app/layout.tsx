@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const revalidate = 60 // Revalidate every 60 seconds
+export const revalidate = 600 // Refresh pages at most every 10 minutes (keeps Netlify usage low)
 
 export default async function RootLayout({
   children,

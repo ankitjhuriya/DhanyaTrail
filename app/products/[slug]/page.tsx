@@ -66,7 +66,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export const revalidate = 60
+export const revalidate = 600 // 10 minutes
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params

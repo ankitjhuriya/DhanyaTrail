@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Explore our complete collection of dry fruits, nuts, berries, seeds, makhana, saffron and wellness products. Sourced with care, delivered fresh.',
 }
 
-export const revalidate = 60
+export const revalidate = 600 // 10 minutes
 
 export default async function ShopPage() {
   const [products, settingsData] = await Promise.all([

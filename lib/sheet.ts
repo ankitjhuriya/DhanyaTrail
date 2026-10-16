@@ -1,5 +1,5 @@
 // Reads the catalogue from the "Dhanya Trail Catalogue" Google Sheet.
-// The sheet must be shared as "Anyone with the link: Viewer". Edits show on the site within ~1 minute.
+// The sheet must be shared as "Anyone with the link: Viewer". Edits show on the site within ~10 minutes.
 // Tabs and headers (header text is matched loosely: case, spaces and symbols are ignored):
 //   Products:          Slug | Product title | Category | Active | Featured | Bestseller | Badge | Photo | Description | Origin
 //   Packs:             Slug | Product | Pack size (g) | Offer price (₹) | MRP (₹) | In stock
@@ -10,7 +10,7 @@ import { Product, ProductVariant, CATEGORIES } from './types'
 import { CompetitorPrice } from './competitors'
 
 export const CATALOGUE_SHEET_ID = '1f2lfeG2Qs2_bT3IqKx_IYLCq6x99nUxHJULysKqaHxY'
-const REVALIDATE_SECONDS = 60
+const REVALIDATE_SECONDS = 600 // sheet edits show on the site within 10 minutes
 
 type Row = Record<string, string>
 

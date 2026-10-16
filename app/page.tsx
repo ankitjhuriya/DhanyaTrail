@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: 'Shop premium dry fruits, nuts, berries, seeds, makhana, saffron and wellness essentials from Dhanya Trail, Hisar. Better prices per 100 g, Diwali gift boxes and secure UPI checkout.',
 }
 
-export const revalidate = 60
+export const revalidate = 600 // 10 minutes
 
 const BESTSELLER_COUNT = 6
 
