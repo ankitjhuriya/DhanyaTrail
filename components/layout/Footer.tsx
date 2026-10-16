@@ -12,8 +12,8 @@ const QUICK_LINKS = [
   { href: '/shop', label: 'Shop' },
   { href: '/gifting', label: 'Diwali Gifting' },
   { href: '/store', label: 'Offline Store' },
-  { href: '/about', label: 'About Us' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about', label: 'Our Story' },
+  { href: '/blog', label: 'Blog' },
   { href: '/faq', label: 'FAQ' },
 ]
 

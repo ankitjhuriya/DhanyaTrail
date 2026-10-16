@@ -17,8 +17,8 @@ const NAV_LINKS = [
   { href: '/shop', label: 'Shop' },
   { href: '/gifting', label: 'Diwali Gifting' },
   { href: '/store', label: 'Offline Store' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about', label: 'Our Story' },
+  { href: '/blog', label: 'Blog' },
 ]
 
 export function Navbar({ settings, searchItems }: NavbarProps) {

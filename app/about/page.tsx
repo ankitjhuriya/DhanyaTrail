@@ -16,13 +16,23 @@ const PILLARS = [
 const SOURCES = [
   {
     n: 1,
-    text: 'Government figures for 2024-25 given in a written reply to the Lok Sabha by the Minister of State for Health and Family Welfare, February 2026 (as reported by IBTimes)',
-    url: 'https://www.ibtimes.co.in/fake-milk-products-12057-cases-filed-against-adulterators-2024-25-898189',
+    text: 'USDA FoodData Central, SR Legacy: Nuts, almonds (FDC ID 170567). Per 100 g: 49.9 g fat, of which 31.6 g monounsaturated and 12.3 g polyunsaturated',
+    url: 'https://fdc.nal.usda.gov/food-details/170567/nutrients',
   },
   {
     n: 2,
-    text: 'FSSAI, National Milk Safety and Quality Survey 2018 (report released October 2019)',
-    url: 'https://www.fssai.gov.in/upload/uploadfiles/files/Report_Milk_Survey_NMQS_18_10_2019.pdf',
+    text: 'FSSAI almond kernel standard (Third Amendment Regulations, 2020, in force from July 2021): oil content not less than 45%, as reported by FnB News',
+    url: 'https://fssai.gov.in/upload/media/FSSAI_News_Gazette_FNB_25_08_2020.pdf',
+  },
+  {
+    n: 3,
+    text: 'Farmley Healthy Snacking Report 2026, a survey of 6,000+ consumers by a snack brand, as reported by Outlook Business',
+    url: 'https://www.outlookbusiness.com/news/86-indians-prioritise-protein-while-choosing-snacks-report',
+  },
+  {
+    n: 4,
+    text: 'Passarelli S. et al., Global estimation of dietary micronutrient inadequacies, The Lancet Global Health, 2024',
+    url: 'https://doi.org/10.1016/S2214-109X(24)00276-6',
   },
 ]
 
@@ -55,11 +65,17 @@ export default function AboutPage() {
           </p>
           <p>
             India&apos;s packaged food industry has grown fast, and so has how much we buy. Genuine quality has not always
-            kept up. In 2024-25, government food-safety checks found that <strong>12,780 of the 33,405 milk and milk-product
-            samples tested</strong>, about 38%, did not meet the standards.<sup><a href="#source-1">1</a></sup> An
-            earlier national milk survey by FSSAI found that <strong>41% of samples fell short of at least one quality
-            standard</strong>, even though most were safe to drink.<sup><a href="#source-2">2</a></sup> If that is true of
-            something as basic as milk, it is worth knowing exactly what is in the rest of your food.
+            kept up. Take badam. A good almond is about <strong>half oil, and close to 90% of that oil is the healthy,
+            unsaturated kind</strong>.<sup><a href="#source-1">1</a></sup> That is why India&apos;s food standard requires
+            almond kernels to contain <strong>at least 45% oil</strong>.<sup><a href="#source-2">2</a></sup> Old, poorly
+            stored or low-grade almonds lose that goodness as the oil goes stale, yet they can look much the same in a pack.
+          </p>
+          <p>
+            Snacking has changed too. In one recent survey, <strong>86% of Indians said protein matters</strong> when they
+            pick a snack.<sup><a href="#source-3">3</a></sup> Protein is important, but it is only one nutrient. Around
+            <strong> two in three people worldwide do not get enough vitamin E</strong>, and in India intake of B vitamins
+            such as riboflavin is especially low.<sup><a href="#source-4">4</a></sup> A handful of almonds brings protein
+            along with vitamin E, riboflavin, magnesium and fibre, which a protein bar on its own often does not.
           </p>
           <p>
             That is our promise: <strong>genuine products, with no additives or unnecessary chemicals.</strong>
