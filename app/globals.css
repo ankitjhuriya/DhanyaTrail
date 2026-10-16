@@ -3207,3 +3207,4 @@ p { line-height: 1.7; }
 .about-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; margin-top: var(--space-lg); }
 .about-sources { max-width: 900px; margin: var(--space-xl) auto 0; padding-left: 1.25rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
 .about-sources a { color: var(--text-muted); text-decoration: underline; }
+.store-gallery img:first-child { object-position: center top; }
