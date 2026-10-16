@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useCart } from '@/lib/cart'
 import { Settings, CATEGORIES } from '@/lib/types'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
-import { BUSINESS } from '@/lib/business'
 import { SearchOverlay, SearchItem } from './SearchOverlay'
 
 interface NavbarProps {
@@ -17,6 +16,7 @@ const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/shop', label: 'Shop' },
   { href: '/gifting', label: 'Diwali Gifting' },
+  { href: '/store', label: 'Offline Store' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -55,7 +55,7 @@ export function Navbar({ settings, searchItems }: NavbarProps) {
         <span>🪔 <Link href="/gifting">Diwali Gift Boxes now available</Link></span>
         <span className="announcement-sep announcement-secondary">•</span>
         <span className="announcement-secondary">
-          <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer">Visit our store in Hisar</a>
+          📍 <Link href="/store">Offline Store, Hisar</Link>
         </span>
       </div>
 
@@ -102,20 +102,13 @@ export function Navbar({ settings, searchItems }: NavbarProps) {
 
             {/* Actions */}
             <div className="nav-actions">
-              {/* Store location */}
-              <a
-                href={BUSINESS.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-store-link"
-                aria-label="Our store in Hisar on Google Maps"
-              >
+              {/* Offline store */}
+              <Link href="/store" className="nav-icon-btn" aria-label="Our offline store in Hisar">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span className="nav-store-text">Hisar Store</span>
-              </a>
+              </Link>
 
               {/* Search */}
               <button type="button" className="nav-icon-btn nav-search-btn" aria-label="Search products" onClick={() => setSearchOpen(true)}>
@@ -231,9 +224,6 @@ export function Navbar({ settings, searchItems }: NavbarProps) {
             <button onClick={() => { openCart(); setMobileOpen(false) }} className="btn btn-outline" style={{ justifyContent: 'center' }}>
               View Cart
             </button>
-            <a href={BUSINESS.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ justifyContent: 'center' }}>
-              📍 Visit our Hisar store
-            </a>
           </div>
         </div>
       </div>

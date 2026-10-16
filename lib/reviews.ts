@@ -4,7 +4,7 @@
 
 import { BUSINESS } from './business'
 
-export const GOOGLE_RATING = { rating: 4.9, count: 14, url: BUSINESS.mapsUrl }
+export const GOOGLE_RATING = { rating: 4.9, count: 17, url: BUSINESS.mapsUrl }
 
 export type Review = {
   name: string
