@@ -3,7 +3,7 @@
 export type StorePhoto = { src: string; alt: string }
 
 export const STORE_PHOTOS: StorePhoto[] = [
-  { src: '/images/store/storefront.jpg', alt: 'Dhanya Trail storefront in Hisar at night, with the lit धन्य Trail sign' },
+  { src: '/images/store/shop-front.jpg', alt: 'Dhanya Trail storefront in Hisar at night, with the lit धन्य Trail sign' },
   { src: '/images/store/inside-counter.jpg', alt: 'Inside the Dhanya Trail store: shelves of dry fruits and the billing counter' },
   { src: '/images/store/almond-shelf.jpg', alt: 'Shelf of almond packs at the Dhanya Trail store' },
   { src: '/images/store/raisins-shelf.jpg', alt: 'Shelves of raisins, munakka and other dry fruits at the Dhanya Trail store' },
