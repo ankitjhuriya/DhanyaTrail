@@ -8,23 +8,30 @@ import { BUSINESS } from './business'
 
 const TIMEOUT_MS = 8000
 
-async function withTimeout(promise: Promise<Response>): Promise<boolean> {
+// Returns whether the request succeeded, and logs the reason when it did not (never the key itself),
+// so failures show up in Netlify > Logs > Functions.
+async function withTimeout(channel: string, promise: Promise<Response>): Promise<boolean> {
   try {
     const res = await Promise.race([
       promise,
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), TIMEOUT_MS)),
     ])
+    if (!res.ok) console.error(`[notify] ${channel} failed: HTTP ${res.status} ${(await res.text()).slice(0, 300)}`)
     return res.ok
-  } catch {
+  } catch (e) {
+    console.error(`[notify] ${channel} failed: ${e instanceof Error ? e.message : String(e)}`)
     return false
   }
 }
 
 export async function notifyByEmail(subject: string, text: string): Promise<boolean | null> {
   const key = process.env.RESEND_API_KEY
-  if (!key) return null // not set up
+  if (!key) {
+    console.warn('[notify] email skipped: RESEND_API_KEY is not set')
+    return null
+  }
   const to = process.env.ORDER_NOTIFY_EMAIL || BUSINESS.email
-  return withTimeout(fetch('https://api.resend.com/emails', {
+  return withTimeout('email', fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -41,7 +48,7 @@ export async function notifyByWhatsApp(text: string): Promise<boolean | null> {
   const apikey = process.env.CALLMEBOT_APIKEY
   if (!phone || !apikey) return null // not set up
   const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(apikey)}`
-  return withTimeout(fetch(url))
+  return withTimeout('whatsapp', fetch(url))
 }
 
 export async function notifyOwner(subject: string, text: string) {
