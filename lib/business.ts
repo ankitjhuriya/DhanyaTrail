@@ -15,6 +15,8 @@ export const BUSINESS = {
   address: 'Shop No. 2, Plot No. 3, Gali No. 1, HTM Colony, Azad Nagar, Hisar, Haryana 125001',
   // Google Maps business listing (cid = the listing's place ID); opens the "Dhanya Trail" pin
   mapsUrl: 'https://www.google.com/maps?cid=17710142788779023371',
+  instagramUrl: 'https://www.instagram.com/dhanya_trail/',
+  instagramHandle: '@dhanya_trail',
   fssai: '20826007002929',
   // UPI ID that receives website payments
   upiId: '7054223858@ybl',

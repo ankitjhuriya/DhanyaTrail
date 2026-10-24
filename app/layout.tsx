@@ -87,6 +87,7 @@ export default async function RootLayout({
                 addressCountry: 'IN',
               },
               hasMap: BUSINESS.mapsUrl,
+              sameAs: [BUSINESS.instagramUrl],
               areaServed: 'India',
               priceRange: '₹₹',
             }),

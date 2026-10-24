@@ -40,6 +40,7 @@ export function Footer({ settings }: FooterProps) {
   const phone = settings.phone || BUSINESS.phone
   const email = settings.email || BUSINESS.email
   const address = settings.address || BUSINESS.address
+  const instagramUrl = settings.instagram_url || BUSINESS.instagramUrl
 
   return (
     <footer className="footer" role="contentinfo">
@@ -98,6 +99,18 @@ export function Footer({ settings }: FooterProps) {
             <div className="footer-contact-item">
               <span className="footer-contact-icon">✉️</span>
               <a href={`mailto:${email}`} className="footer-link">{email}</a>
+            </div>
+            <div className="footer-contact-item">
+              <span className="footer-contact-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4.5" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="footer-link" aria-label={`Dhanya Trail on Instagram, ${BUSINESS.instagramHandle}`}>
+                {BUSINESS.instagramHandle}
+              </a>
             </div>
             <div className="footer-contact-item">
               <span className="footer-contact-icon">📍</span>
